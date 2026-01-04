@@ -30,6 +30,18 @@
       "homepage": "https://github.com/obra/superpowers/tree/main/skills/brainstorming",
       "keywords": ["brainstorming", "design", "planning"],
       "strict": false
+    },
+    {
+      "name": "swiftui-ui-patterns",
+      "source": "./swiftui-ui-patterns",
+      "description": "Best practices and example-driven guidance for building SwiftUI views and components. Use when creating or refactoring SwiftUI UI, designing tab architecture with TabView, composing screens, or needing component-specific patterns and examples.",
+      "author": {
+        "name": "Dimillian"
+      },
+      "repository": "https://github.com/Dimillian/Skills",
+      "homepage": "https://github.com/Dimillian/Skills/tree/main/swiftui-ui-patterns",
+      "keywords": ["swiftui", "ui-patterns", "components"],
+      "strict": false
     }
   ]
 }
