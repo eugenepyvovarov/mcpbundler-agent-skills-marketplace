@@ -54,6 +54,18 @@
       "homepage": "https://github.com/Dimillian/Skills/tree/main/swiftui-view-refactor",
       "keywords": ["swiftui", "refactor", "view-structure"],
       "strict": false
+    },
+    {
+      "name": "swift-concurrency-expert",
+      "source": "./swift-concurrency-expert",
+      "description": "Swift Concurrency review and remediation for Swift 6.2+. Use when asked to review Swift Concurrency usage, improve concurrency compliance, or fix Swift concurrency compiler errors in a feature or file.",
+      "author": {
+        "name": "Dimillian"
+      },
+      "repository": "https://github.com/Dimillian/Skills",
+      "homepage": "https://github.com/Dimillian/Skills/tree/main/swift-concurrency-expert",
+      "keywords": ["swift", "concurrency", "swift-6"],
+      "strict": false
     }
   ]
 }
