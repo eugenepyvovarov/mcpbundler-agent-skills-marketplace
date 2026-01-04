@@ -1,0 +1,9 @@
+{
+  "canonical" : true,
+  "lastSyncAt" : "2025-12-19T01:02:59.003Z",
+  "lastSyncedHash" : "ac7975190420775cac53f8da75f23025deaead8857aaeb96e7e4253a64948e7b",
+  "managedBy" : "mcp-bundler",
+  "skillId" : "ED64A852-1EF5-43C5-8881-74BDE734EBB2",
+  "tool" : "bundler",
+  "version" : 1
+}
