@@ -18,6 +18,18 @@
       "homepage": "https://github.com/Dimillian/Skills/tree/main/swiftui-liquid-glass",
       "keywords": ["swiftui", "liquid-glass", "ios"],
       "strict": false
+    },
+    {
+      "name": "brainstorming",
+      "source": "./brainstorming",
+      "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
+      "author": {
+        "name": "obra"
+      },
+      "repository": "https://github.com/obra/superpowers",
+      "homepage": "https://github.com/obra/superpowers/tree/main/skills/brainstorming",
+      "keywords": ["brainstorming", "design", "planning"],
+      "strict": false
     }
   ]
 }
