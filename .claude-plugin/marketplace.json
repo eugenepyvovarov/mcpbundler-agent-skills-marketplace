@@ -1,0 +1,23 @@
+{
+  "name": "mcpbundler-agent-skills-marketplace",
+  "owner": {
+    "name": "eugenepyvovarov"
+  },
+  "metadata": {
+    "description": "Marketplace for Agent skills curated for the MCPBundler app(https://mcpbundler.com)"
+  },
+  "plugins": [
+    {
+      "name": "swiftui-liquid-glass",
+      "source": "./swiftui-liquid-glass",
+      "description": "Implement, review, or improve SwiftUI features using the iOS 26+ Liquid Glass API. Use when asked to adopt Liquid Glass in new SwiftUI UI, refactor an existing feature to Liquid Glass, or review Liquid Glass usage for correctness, performance, and design alignment.",
+      "author": {
+        "name": "Dimillian"
+      },
+      "repository": "https://github.com/Dimillian/Skills",
+      "homepage": "https://github.com/Dimillian/Skills/tree/main/swiftui-liquid-glass",
+      "keywords": ["swiftui", "liquid-glass", "ios"],
+      "strict": false
+    }
+  ]
+}
