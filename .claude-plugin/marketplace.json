@@ -16,8 +16,13 @@
       },
       "repository": "https://github.com/Dimillian/Skills",
       "homepage": "https://github.com/Dimillian/Skills/tree/main/swiftui-liquid-glass",
-      "keywords": ["swiftui", "liquid-glass", "ios"],
-      "strict": false
+      "keywords": [
+        "swiftui",
+        "liquid-glass",
+        "ios"
+      ],
+      "strict": false,
+      "version": "052112b19c7f611209696fd46f89a19a9e0d6cea"
     },
     {
       "name": "brainstorming",
@@ -28,8 +33,13 @@
       },
       "repository": "https://github.com/obra/superpowers",
       "homepage": "https://github.com/obra/superpowers/tree/main/skills/brainstorming",
-      "keywords": ["brainstorming", "design", "planning"],
-      "strict": false
+      "keywords": [
+        "brainstorming",
+        "design",
+        "planning"
+      ],
+      "strict": false,
+      "version": "612fbcdd01be93b7e3432f04fc8a864e2c3b8a88"
     },
     {
       "name": "swiftui-ui-patterns",
@@ -40,8 +50,13 @@
       },
       "repository": "https://github.com/Dimillian/Skills",
       "homepage": "https://github.com/Dimillian/Skills/tree/main/swiftui-ui-patterns",
-      "keywords": ["swiftui", "ui-patterns", "components"],
-      "strict": false
+      "keywords": [
+        "swiftui",
+        "ui-patterns",
+        "components"
+      ],
+      "strict": false,
+      "version": "f1749b2b45aa2def609184fde19c833cc55fba2e"
     },
     {
       "name": "swiftui-view-refactor",
@@ -52,8 +67,13 @@
       },
       "repository": "https://github.com/Dimillian/Skills",
       "homepage": "https://github.com/Dimillian/Skills/tree/main/swiftui-view-refactor",
-      "keywords": ["swiftui", "refactor", "view-structure"],
-      "strict": false
+      "keywords": [
+        "swiftui",
+        "refactor",
+        "view-structure"
+      ],
+      "strict": false,
+      "version": "ad1bb92d3e9ce8f42c993164d1048e949f520dca"
     },
     {
       "name": "swift-concurrency-expert",
@@ -64,8 +84,30 @@
       },
       "repository": "https://github.com/Dimillian/Skills",
       "homepage": "https://github.com/Dimillian/Skills/tree/main/swift-concurrency-expert",
-      "keywords": ["swift", "concurrency", "swift-6"],
-      "strict": false
+      "keywords": [
+        "swift",
+        "concurrency",
+        "swift-6"
+      ],
+      "strict": false,
+      "version": "5c35a6c9eeeb33651fa6b5ff02988864ef8d3625"
+    },
+    {
+      "name": "enterprise-readiness-skill",
+      "source": "./enterprise-readiness-skill",
+      "description": "Assess and enhance software projects for enterprise-grade security, quality, and automation. Use when evaluating projects for production readiness, implementing supply chain security (SLSA, signing, SBOMs), hardening CI/CD pipelines, or establishing quality gates. Aligned with OpenSSF Scorecard, Best Practices Badge (all levels), SLSA, and S2C2F. By Netresearch.",
+      "author": {
+        "name": "Netresearch"
+      },
+      "repository": "https://github.com/netresearch/enterprise-readiness-skill",
+      "homepage": "https://github.com/netresearch/enterprise-readiness-skill/tree/main",
+      "keywords": [
+        "enterprise",
+        "security",
+        "compliance"
+      ],
+      "strict": false,
+      "version": "222a0ef701e293becde6cc374e91b80bcc263403"
     },
     {
       "name": "spec-to-plan",
@@ -75,7 +117,11 @@
         "name": "Eugene P"
       },
       "homepage": "https://mcpbundler.com",
-      "keywords": ["specification", "planning", "requirements"],
+      "keywords": [
+        "specification",
+        "planning",
+        "requirements"
+      ],
       "strict": false
     }
   ]
