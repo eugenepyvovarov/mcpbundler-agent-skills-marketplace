@@ -116,6 +116,24 @@
       "version": "222a0ef701e293becde6cc374e91b80bcc263403"
     },
     {
+      "name": "git-workflow-skill",
+      "source": "./git-workflow-skill",
+      "description": "Agent Skill: Git workflow best practices for teams and CI/CD. Use when establishing branching strategies, implementing Conventional Commits, configuring PRs, or integrating Git with CI/CD. By Netresearch.",
+      "author": {
+        "name": "Netresearch"
+      },
+      "repository": "https://github.com/netresearch/git-workflow-skill",
+      "homepage": "https://github.com/netresearch/git-workflow-skill/tree/main",
+      "keywords": [
+        "git",
+        "workflow",
+        "ci-cd"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "c13725caa1763fcb1fe796bfd5f74c892a1870b3"
+    },
+    {
       "name": "spec-to-plan",
       "source": "./spec-to-plan",
       "description": "Transform project descriptions and feature requests into comprehensive specifications and actionable task lists. Use when the user wants to: (1) Create a specification from a project/feature description, (2) Generate a detailed plan with task breakdown, (3) Clarify requirements before implementation, (4) Convert ideas into structured development plans with progress tracking. Works with or without existing codebase files.",

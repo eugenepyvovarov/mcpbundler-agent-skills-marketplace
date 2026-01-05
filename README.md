@@ -15,6 +15,7 @@ Owner: eugenepyvovarov
 | Skill | Description |
 | --- | --- |
 | `enterprise-readiness-skill` | Assess and enhance software projects for enterprise-grade security, quality, and automation. Use when evaluating projects for production readiness, implementing supply chain security (SLSA, signing, SBOMs), hardening CI/CD pipelines, or establishing quality gates. Aligned with OpenSSF Scorecard, Best Practices Badge (all levels), SLSA, and S2C2F. By Netresearch.<br><br>Origin: https://github.com/netresearch/enterprise-readiness-skill |
+| `git-workflow-skill` | Agent Skill: Git workflow best practices for teams and CI/CD. Use when establishing branching strategies, implementing Conventional Commits, configuring PRs, or integrating Git with CI/CD. By Netresearch.<br><br>Origin: https://github.com/netresearch/git-workflow-skill |
 
 ### Productivity
 
