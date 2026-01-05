@@ -8,7 +8,7 @@ Owner: eugenepyvovarov
 
 - [Development](#development)
 - [Productivity](#productivity)
-- [Swift Development](#swiftdevelopment)
+- [Swift Development](#swift-development)
 
 ### Development
 
