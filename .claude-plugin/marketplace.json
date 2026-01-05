@@ -21,6 +21,7 @@
         "liquid-glass",
         "ios"
       ],
+      "category": "Swift Development",
       "strict": false,
       "version": "052112b19c7f611209696fd46f89a19a9e0d6cea"
     },
@@ -38,6 +39,7 @@
         "design",
         "planning"
       ],
+      "category": "Productivity",
       "strict": false,
       "version": "612fbcdd01be93b7e3432f04fc8a864e2c3b8a88"
     },
@@ -55,6 +57,7 @@
         "ui-patterns",
         "components"
       ],
+      "category": "Swift Development",
       "strict": false,
       "version": "f1749b2b45aa2def609184fde19c833cc55fba2e"
     },
@@ -72,6 +75,7 @@
         "refactor",
         "view-structure"
       ],
+      "category": "Swift Development",
       "strict": false,
       "version": "ad1bb92d3e9ce8f42c993164d1048e949f520dca"
     },
@@ -89,6 +93,7 @@
         "concurrency",
         "swift-6"
       ],
+      "category": "Swift Development",
       "strict": false,
       "version": "5c35a6c9eeeb33651fa6b5ff02988864ef8d3625"
     },
@@ -106,6 +111,7 @@
         "security",
         "compliance"
       ],
+      "category": "Development",
       "strict": false,
       "version": "222a0ef701e293becde6cc374e91b80bcc263403"
     },
@@ -122,6 +128,7 @@
         "planning",
         "requirements"
       ],
+      "category": "Productivity",
       "strict": false
     }
   ]
