@@ -59,7 +59,7 @@
       ],
       "category": "Swift Development",
       "strict": false,
-      "version": "f1749b2b45aa2def609184fde19c833cc55fba2e"
+      "version": "b6d69af07379580cb226a57c8bedc312d74c303c"
     },
     {
       "name": "swiftui-view-refactor",
@@ -77,7 +77,7 @@
       ],
       "category": "Swift Development",
       "strict": false,
-      "version": "ad1bb92d3e9ce8f42c993164d1048e949f520dca"
+      "version": "106e533451867ab97ef96d27424e3dac34b079e6"
     },
     {
       "name": "swift-concurrency-expert",
@@ -95,7 +95,7 @@
       ],
       "category": "Swift Development",
       "strict": false,
-      "version": "5c35a6c9eeeb33651fa6b5ff02988864ef8d3625"
+      "version": "2f499fcceed6edfb334bbcb0f55f361846f181e7"
     },
     {
       "name": "enterprise-readiness-skill",
@@ -113,7 +113,7 @@
       ],
       "category": "Development",
       "strict": false,
-      "version": "222a0ef701e293becde6cc374e91b80bcc263403"
+      "version": "3cc906f09fc313cabcf0e4c1b1b09449989a5ea6"
     },
     {
       "name": "git-workflow-skill",
@@ -131,7 +131,97 @@
       ],
       "category": "Development",
       "strict": false,
-      "version": "c13725caa1763fcb1fe796bfd5f74c892a1870b3"
+      "version": "e15e29634efb3433c8bf2d15a104d2581526e97d"
+    },
+    {
+      "name": "model-trainer",
+      "source": "./model-trainer",
+      "description": "This skill should be used when users want to train or fine-tune language models using TRL (Transformer Reinforcement Learning) on Hugging Face Jobs infrastructure. Covers SFT, DPO, GRPO and reward modeling training methods, plus GGUF conversion for local deployment. Includes guidance on the TRL Jobs package, UV scripts with PEP 723 format, dataset preparation and validation, hardware selection, cost estimation, Trackio monitoring, Hub authentication, and model persistence. Should be invoked for tasks involving cloud GPU training, GGUF conversion, or when users mention training on Hugging Face Jobs without local GPU setup.",
+      "author": {
+        "name": "Hugging Face"
+      },
+      "repository": "https://github.com/huggingface/skills",
+      "homepage": "https://github.com/huggingface/skills/tree/main/hf-trainer/skills/model-trainer",
+      "keywords": [
+        "model-training",
+        "trl",
+        "hugging-face-jobs"
+      ],
+      "category": "AI/Machine Learning",
+      "strict": false,
+      "version": "497d0d8a00626cb521bf6a0ccfa3c28db6518cda"
+    },
+    {
+      "name": "hf-cli",
+      "source": "./hf-cli",
+      "description": "Execute Hugging Face Hub operations using the `hf` CLI. Use when the user needs to download models/datasets/spaces, upload files to Hub repositories, create repos, manage local cache, or run compute jobs on HF infrastructure. Covers authentication, file transfers, repository creation, cache operations, and cloud compute.",
+      "author": {
+        "name": "Hugging Face"
+      },
+      "repository": "https://github.com/huggingface/skills",
+      "homepage": "https://github.com/huggingface/skills/tree/main/hf-cli",
+      "keywords": [
+        "hugging-face",
+        "cli",
+        "hub"
+      ],
+      "category": "AI/Machine Learning",
+      "strict": false,
+      "version": "919ba0801f1a923daa672aaa3d2a395019b3e7aa"
+    },
+    {
+      "name": "hugging-face-evaluation-manager",
+      "source": "./hugging-face-evaluation-manager",
+      "description": "Add and manage evaluation results in Hugging Face model cards. Supports extracting eval tables from README content, importing scores from Artificial Analysis API, and running custom model evaluations with vLLM/lighteval. Works with the model-index metadata format.",
+      "author": {
+        "name": "Hugging Face"
+      },
+      "repository": "https://github.com/huggingface/skills",
+      "homepage": "https://github.com/huggingface/skills/tree/main/hf-evaluation/skills/hugging-face-evaluation-manager",
+      "keywords": [
+        "evaluation",
+        "model-cards",
+        "metrics"
+      ],
+      "category": "AI/Machine Learning",
+      "strict": false,
+      "version": "242d630ef8c0169a935326c6631553ceb0dc75ee"
+    },
+    {
+      "name": "hugging-face-paper-publisher",
+      "source": "./hugging-face-paper-publisher",
+      "description": "Publish and manage research papers on Hugging Face Hub. Supports creating paper pages, linking papers to models/datasets, claiming authorship, and generating professional markdown-based research articles.",
+      "author": {
+        "name": "Hugging Face"
+      },
+      "repository": "https://github.com/huggingface/skills",
+      "homepage": "https://github.com/huggingface/skills/tree/main/hf-papers/skills/hugging-face-paper-publisher",
+      "keywords": [
+        "papers",
+        "research",
+        "hugging-face"
+      ],
+      "category": "AI/Machine Learning",
+      "strict": false,
+      "version": "422ae063f2c0bde17c84272e39af5653aea6805e"
+    },
+    {
+      "name": "hf-tool-builder",
+      "source": "./hf-tool-builder",
+      "description": "Use this skill when the user wants to build tool/scripts or achieve a task where using data from the Hugging Face API would help. This is especially useful when chaining or combining API calls or the task will be repeated/automated. This Skill creates a reusable script to fetch, enrich or process data.",
+      "author": {
+        "name": "Hugging Face"
+      },
+      "repository": "https://github.com/huggingface/skills",
+      "homepage": "https://github.com/huggingface/skills/tree/main/hf-tool-builder/skills/hf-tool-builder",
+      "keywords": [
+        "hugging-face-api",
+        "tools",
+        "automation"
+      ],
+      "category": "AI/Machine Learning",
+      "strict": false,
+      "version": "f44edd4bd5272d4ee92150292204e0759d6d06e5"
     },
     {
       "name": "spec-to-plan",

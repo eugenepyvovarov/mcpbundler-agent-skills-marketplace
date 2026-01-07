@@ -6,9 +6,20 @@ Owner: eugenepyvovarov
 
 ## Categories
 
+- [AI/Machine Learning](#aimachine-learning)
 - [Development](#development)
 - [Productivity](#productivity)
 - [Swift Development](#swift-development)
+
+### AI/Machine Learning
+
+| Skill | Description |
+| --- | --- |
+| `hf-cli` | Execute Hugging Face Hub operations using the `hf` CLI. Use when the user needs to download models/datasets/spaces, upload files to Hub repositories, create repos, manage local cache, or run compute jobs on HF infrastructure. Covers authentication, file transfers, repository creation, cache operations, and cloud compute.<br><br>Origin: https://github.com/huggingface/skills |
+| `hf-tool-builder` | Use this skill when the user wants to build tool/scripts or achieve a task where using data from the Hugging Face API would help. This is especially useful when chaining or combining API calls or the task will be repeated/automated. This Skill creates a reusable script to fetch, enrich or process data.<br><br>Origin: https://github.com/huggingface/skills |
+| `hugging-face-evaluation-manager` | Add and manage evaluation results in Hugging Face model cards. Supports extracting eval tables from README content, importing scores from Artificial Analysis API, and running custom model evaluations with vLLM/lighteval. Works with the model-index metadata format.<br><br>Origin: https://github.com/huggingface/skills |
+| `hugging-face-paper-publisher` | Publish and manage research papers on Hugging Face Hub. Supports creating paper pages, linking papers to models/datasets, claiming authorship, and generating professional markdown-based research articles.<br><br>Origin: https://github.com/huggingface/skills |
+| `model-trainer` | This skill should be used when users want to train or fine-tune language models using TRL (Transformer Reinforcement Learning) on Hugging Face Jobs infrastructure. Covers SFT, DPO, GRPO and reward modeling training methods, plus GGUF conversion for local deployment. Includes guidance on the TRL Jobs package, UV scripts with PEP 723 format, dataset preparation and validation, hardware selection, cost estimation, Trackio monitoring, Hub authentication, and model persistence. Should be invoked for tasks involving cloud GPU training, GGUF conversion, or when users mention training on Hugging Face Jobs without local GPU setup.<br><br>Origin: https://github.com/huggingface/skills |
 
 ### Development
 
