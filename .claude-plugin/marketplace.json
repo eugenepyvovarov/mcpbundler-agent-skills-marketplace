@@ -256,6 +256,24 @@
       "category": "Development",
       "strict": false,
       "version": "3734e9a7edcb93598febdb5234f8d6d4552055b7"
+    },
+    {
+      "name": "obsidian-agent-skill",
+      "source": "./obsidian-agent-skill",
+      "description": "Manage local Obsidian vaults and markdown notes. Use when Codex needs to connect to local Obsidian vaults, register vault paths, or create/edit/refactor/search notes, frontmatter, links, tags, and attachments within a vault.",
+      "author": {
+        "name": "eugenepyvovarov"
+      },
+      "repository": "https://github.com/eugenepyvovarov/obsidian-agent-skill",
+      "homepage": "https://github.com/eugenepyvovarov/obsidian-agent-skill/tree/main",
+      "keywords": [
+        "obsidian",
+        "notes",
+        "markdown"
+      ],
+      "category": "Productivity",
+      "strict": false,
+      "version": "361d6d721ef71768a3d8141f4d37bc0a54eed83b"
     }
   ]
 }
