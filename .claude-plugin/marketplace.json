@@ -238,6 +238,24 @@
       ],
       "category": "Productivity",
       "strict": false
+    },
+    {
+      "name": "skill-boilerplate-skill",
+      "source": "./skill-boilerplate-skill",
+      "description": "Define a standard per-skill local data layout at <project_root>/.skills-data/<skill-name> and required SKILL.md guidance for env/config/deps/tools. Use when starting a new skill and you must specify where to store data, env files, local binaries, and dependencies.",
+      "author": {
+        "name": "eugenepyvovarov"
+      },
+      "repository": "https://github.com/eugenepyvovarov/skill-boilerplate-skill",
+      "homepage": "https://github.com/eugenepyvovarov/skill-boilerplate-skill",
+      "keywords": [
+        "boilerplate",
+        "skill-setup",
+        "data-layout"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "3734e9a7edcb93598febdb5234f8d6d4552055b7"
     }
   ]
 }
