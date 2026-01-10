@@ -274,6 +274,24 @@
       "category": "Productivity",
       "strict": false,
       "version": "361d6d721ef71768a3d8141f4d37bc0a54eed83b"
+    },
+    {
+      "name": "openai-knowledge",
+      "source": "./openai-knowledge",
+      "description": "Use when working with the OpenAI API (Responses API) or OpenAI platform features (tools, streaming, Realtime API, auth, models, rate limits, MCP) and you need authoritative, up-to-date documentation (schemas, examples, limits, edge cases). Prefer the OpenAI Developer Documentation MCP server tools when available; otherwise guide the user to enable `openaiDeveloperDocs`.",
+      "author": {
+        "name": "OpenAI"
+      },
+      "repository": "https://github.com/openai/openai-agents-python",
+      "homepage": "https://github.com/openai/openai-agents-python/tree/main/.codex/skills/openai-knowledge",
+      "keywords": [
+        "openai",
+        "api",
+        "documentation"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "19b7c0bbab31ed7a5c3c0c48620ce88a00b2acc6"
     }
   ]
 }
