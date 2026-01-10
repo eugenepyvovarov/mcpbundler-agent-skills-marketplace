@@ -292,6 +292,24 @@
       "category": "Development",
       "strict": false,
       "version": "19b7c0bbab31ed7a5c3c0c48620ce88a00b2acc6"
+    },
+    {
+      "name": "things3-agent-skill",
+      "source": "./things3-agent-skill",
+      "description": "Manage tasks, projects, areas, headings, and tags in the Things 3 macOS app via a local CLI (list Inbox/Today/Upcoming/Anytime/Someday/Logbook, search, create/update/complete/cancel items, open items in Things). Use when Codex needs to manage Things 3 on macOS.",
+      "author": {
+        "name": "eugenepyvovarov"
+      },
+      "repository": "https://github.com/eugenepyvovarov/things3-agent-skill",
+      "homepage": "https://github.com/eugenepyvovarov/things3-agent-skill/tree/main",
+      "keywords": [
+        "things3",
+        "tasks",
+        "macos"
+      ],
+      "category": "Productivity",
+      "strict": false,
+      "version": "36d81b10b8ab354f89f86ace0742150e9fcfc624"
     }
   ]
 }

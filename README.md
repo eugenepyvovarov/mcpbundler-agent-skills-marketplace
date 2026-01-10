@@ -37,6 +37,7 @@ Owner: eugenepyvovarov
 | `brainstorming` | You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.<br><br>Origin: https://github.com/obra/superpowers |
 | `obsidian-agent-skill` | Manage local Obsidian vaults and markdown notes. Use when Codex needs to connect to local Obsidian vaults, register vault paths, or create/edit/refactor/search notes, frontmatter, links, tags, and attachments within a vault.<br><br>Origin: https://github.com/eugenepyvovarov/obsidian-agent-skill |
 | `spec-to-plan` | Transform project descriptions and feature requests into comprehensive specifications and actionable task lists. Use when the user wants to: (1) Create a specification from a project/feature description, (2) Generate a detailed plan with task breakdown, (3) Clarify requirements before implementation, (4) Convert ideas into structured development plans with progress tracking. Works with or without existing codebase files.<br><br>Origin: https://mcpbundler.com |
+| `things3-agent-skill` | Manage tasks, projects, areas, headings, and tags in the Things 3 macOS app via a local CLI (list Inbox/Today/Upcoming/Anytime/Someday/Logbook, search, create/update/complete/cancel items, open items in Things). Use when Codex needs to manage Things 3 on macOS.<br><br>Origin: https://github.com/eugenepyvovarov/things3-agent-skill |
 
 ### Swift Development
 
