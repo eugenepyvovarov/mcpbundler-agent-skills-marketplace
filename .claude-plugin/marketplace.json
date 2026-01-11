@@ -294,6 +294,24 @@
       "version": "19b7c0bbab31ed7a5c3c0c48620ce88a00b2acc6"
     },
     {
+      "name": "wordpress-plugin-core",
+      "source": "./wordpress-plugin-core",
+      "description": "Build secure WordPress plugins with hooks, database interactions, Settings API, custom post types, and REST API. Use when creating plugins or troubleshooting SQL injection, XSS, CSRF vulnerabilities, or plugin activation errors.",
+      "author": {
+        "name": "jezweb"
+      },
+      "repository": "https://github.com/jezweb/claude-skills",
+      "homepage": "https://github.com/jezweb/claude-skills/tree/main/skills/wordpress-plugin-core",
+      "keywords": [
+        "wordpress",
+        "plugins",
+        "security"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "bd9ffe5461f7eb5c7316dc906946524a49caa621"
+    },
+    {
       "name": "things3-agent-skill",
       "source": "./things3-agent-skill",
       "description": "Manage tasks, projects, areas, headings, and tags in the Things 3 macOS app via a local CLI (list Inbox/Today/Upcoming/Anytime/Someday/Logbook, search, create/update/complete/cancel items, open items in Things). Use when Codex needs to manage Things 3 on macOS.",
