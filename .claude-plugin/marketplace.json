@@ -328,6 +328,204 @@
       "category": "Productivity",
       "strict": false,
       "version": "36d81b10b8ab354f89f86ace0742150e9fcfc624"
+    },
+    {
+      "name": "wordpress-router",
+      "source": "./wordpress-router",
+      "description": "Use when the user asks about WordPress codebases (plugins, themes, block themes, Gutenberg blocks, WP core checkouts) and you need to quickly classify the repo and route to the correct workflow/skill (blocks, theme.json, REST API, WP-CLI, performance, security, testing, release packaging).",
+      "author": {
+        "name": "Automattic"
+      },
+      "repository": "https://github.com/Automattic/agent-skills",
+      "homepage": "https://github.com/Automattic/agent-skills/tree/trunk/skills/wordpress-router",
+      "keywords": [
+        "wordpress",
+        "triage",
+        "routing"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "5944930eaf467d2d12c23bec8d096f57e6e379aa"
+    },
+    {
+      "name": "wp-abilities-api",
+      "source": "./wp-abilities-api",
+      "description": "Use when working with the WordPress Abilities API (wp_register_ability, wp_register_ability_category, /wp-json/wp-abilities/v1/*, @wordpress/abilities) including defining abilities, categories, meta, REST exposure, and permissions checks for clients.",
+      "author": {
+        "name": "Automattic"
+      },
+      "repository": "https://github.com/Automattic/agent-skills",
+      "homepage": "https://github.com/Automattic/agent-skills/tree/trunk/skills/wp-abilities-api",
+      "keywords": [
+        "wordpress",
+        "abilities",
+        "rest-api"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "d4e35b53bcbf80a9398c235d40b2cf9802c5d38c"
+    },
+    {
+      "name": "wp-block-development",
+      "source": "./wp-block-development",
+      "description": "Use when developing WordPress (Gutenberg) blocks: block.json metadata, register_block_type(_from_metadata), attributes/serialization, supports, dynamic rendering (render.php/render_callback), deprecations/migrations, viewScript vs viewScriptModule, and @wordpress/scripts/@wordpress/create-block build and test workflows.",
+      "author": {
+        "name": "Automattic"
+      },
+      "repository": "https://github.com/Automattic/agent-skills",
+      "homepage": "https://github.com/Automattic/agent-skills/tree/trunk/skills/wp-block-development",
+      "keywords": [
+        "wordpress",
+        "blocks",
+        "gutenberg"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "ad7156c3989ff4d9df12b35e155a3c01045b194b"
+    },
+    {
+      "name": "wp-block-themes",
+      "source": "./wp-block-themes",
+      "description": "Use when developing WordPress block themes: theme.json (global settings/styles), templates and template parts, patterns, style variations, and Site Editor troubleshooting (style hierarchy, overrides, caching).",
+      "author": {
+        "name": "Automattic"
+      },
+      "repository": "https://github.com/Automattic/agent-skills",
+      "homepage": "https://github.com/Automattic/agent-skills/tree/trunk/skills/wp-block-themes",
+      "keywords": [
+        "wordpress",
+        "block-themes",
+        "theme-json"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "974b39044108c2c95426fc39d0e8ef4e0f555a9f"
+    },
+    {
+      "name": "wp-interactivity-api",
+      "source": "./wp-interactivity-api",
+      "description": "Use when building or debugging WordPress Interactivity API features (data-wp-* directives, @wordpress/interactivity store/state/actions, block viewScriptModule integration, wp_interactivity_*()) including performance, hydration, and directive behavior.",
+      "author": {
+        "name": "Automattic"
+      },
+      "repository": "https://github.com/Automattic/agent-skills",
+      "homepage": "https://github.com/Automattic/agent-skills/tree/trunk/skills/wp-interactivity-api",
+      "keywords": [
+        "wordpress",
+        "interactivity",
+        "blocks"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "0ddab5828bf565d996cd336b3c844798a4974f9f"
+    },
+    {
+      "name": "wp-performance",
+      "source": "./wp-performance",
+      "description": "Use when investigating or improving WordPress performance (backend-only agent): profiling and measurement (WP-CLI profile/doctor, Server-Timing, Query Monitor via REST headers), database/query optimization, autoloaded options, object caching, cron, HTTP API calls, and safe verification.",
+      "author": {
+        "name": "Automattic"
+      },
+      "repository": "https://github.com/Automattic/agent-skills",
+      "homepage": "https://github.com/Automattic/agent-skills/tree/trunk/skills/wp-performance",
+      "keywords": [
+        "wordpress",
+        "performance",
+        "profiling"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "bfadcb7ae113af5e6881dee38f1d30c3454ef241"
+    },
+    {
+      "name": "wp-phpstan",
+      "source": "./wp-phpstan",
+      "description": "Use when configuring, running, or fixing PHPStan static analysis in WordPress projects (plugins/themes/sites): phpstan.neon setup, baselines, WordPress-specific typing, and handling third-party plugin classes.",
+      "author": {
+        "name": "Automattic"
+      },
+      "repository": "https://github.com/Automattic/agent-skills",
+      "homepage": "https://github.com/Automattic/agent-skills/tree/trunk/skills/wp-phpstan",
+      "keywords": [
+        "wordpress",
+        "phpstan",
+        "static-analysis"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "4904f8c46fc6ffd0b493d42d69d534a0a804b148"
+    },
+    {
+      "name": "wp-playground",
+      "source": "./wp-playground",
+      "description": "Use for WordPress Playground workflows: fast disposable WP instances in the browser or locally via @wp-playground/cli (server, run-blueprint, build-snapshot), auto-mounting plugins/themes, switching WP/PHP versions, blueprints, and debugging (Xdebug).",
+      "author": {
+        "name": "Automattic"
+      },
+      "repository": "https://github.com/Automattic/agent-skills",
+      "homepage": "https://github.com/Automattic/agent-skills/tree/trunk/skills/wp-playground",
+      "keywords": [
+        "wordpress",
+        "playground",
+        "testing"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "cca51a6218532ff57a36ae0365787aa57319352b"
+    },
+    {
+      "name": "wp-plugin-development",
+      "source": "./wp-plugin-development",
+      "description": "Use when developing WordPress plugins: architecture and hooks, activation/deactivation/uninstall, admin UI and Settings API, data storage, cron/tasks, security (nonces/capabilities/sanitization/escaping), and release packaging.",
+      "author": {
+        "name": "Automattic"
+      },
+      "repository": "https://github.com/Automattic/agent-skills",
+      "homepage": "https://github.com/Automattic/agent-skills/tree/trunk/skills/wp-plugin-development",
+      "keywords": [
+        "wordpress",
+        "plugins",
+        "architecture"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "95e374f7dcb10d2c860bbf0a77de9448cfc578e0"
+    },
+    {
+      "name": "wp-project-triage",
+      "source": "./wp-project-triage",
+      "description": "Use when you need a deterministic inspection of a WordPress repository (plugin/theme/block theme/WP core/Gutenberg/full site) including tooling/tests/version hints, and a structured JSON report to guide workflows and guardrails.",
+      "author": {
+        "name": "Automattic"
+      },
+      "repository": "https://github.com/Automattic/agent-skills",
+      "homepage": "https://github.com/Automattic/agent-skills/tree/trunk/skills/wp-project-triage",
+      "keywords": [
+        "wordpress",
+        "triage",
+        "repository"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "95e374f7dcb10d2c860bbf0a77de9448cfc578e0"
+    },
+    {
+      "name": "wp-wpcli-and-ops",
+      "source": "./wp-wpcli-and-ops",
+      "description": "Use when working with WP-CLI (wp) for WordPress operations: safe search-replace, db export/import, plugin/theme/user/content management, cron, cache flushing, multisite, and scripting/automation with wp-cli.yml.",
+      "author": {
+        "name": "Automattic"
+      },
+      "repository": "https://github.com/Automattic/agent-skills",
+      "homepage": "https://github.com/Automattic/agent-skills/tree/trunk/skills/wp-wpcli-and-ops",
+      "keywords": [
+        "wordpress",
+        "wp-cli",
+        "operations"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "95e374f7dcb10d2c860bbf0a77de9448cfc578e0"
     }
   ]
 }
