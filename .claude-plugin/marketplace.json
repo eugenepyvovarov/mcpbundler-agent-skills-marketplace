@@ -526,6 +526,24 @@
       "category": "Development",
       "strict": false,
       "version": "95e374f7dcb10d2c860bbf0a77de9448cfc578e0"
+    },
+    {
+      "name": "x-bookmarks-agent-skill",
+      "source": "./x-bookmarks-agent-skill",
+      "description": "Read X/Twitter bookmarks using the bird CLI, verify the active account via `bird whoami`, and return bookmarks as JSON. Use when the user asks to list, search, summarize, or export X bookmarks, or when you must validate the active X account before fetching bookmarks.",
+      "author": {
+        "name": "eugenepyvovarov"
+      },
+      "repository": "https://github.com/eugenepyvovarov/x-bookmarks-agent-skill",
+      "homepage": "https://github.com/eugenepyvovarov/x-bookmarks-agent-skill/tree/main",
+      "keywords": [
+        "x",
+        "bookmarks",
+        "twitter"
+      ],
+      "category": "Productivity",
+      "strict": false,
+      "version": "337520879dd2a5353d4124f389a6374265423f9e"
     }
   ]
 }

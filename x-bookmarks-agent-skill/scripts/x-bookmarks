@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SKILL_NAME="x-bookmarks-manager"
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PROJECT_ROOT="$(cd "$SKILL_ROOT/../../.." && pwd)"
+SKILL_DATA_DIR="$PROJECT_ROOT/.skills-data/$SKILL_NAME"
+ENV_FILE="$SKILL_DATA_DIR/.env"
+
+if [[ ! -f "$ENV_FILE" ]]; then
+  bash "$SKILL_ROOT/scripts/setup.sh"
+fi
+
+# shellcheck disable=SC1090
+source "$ENV_FILE"
+
+BIRD_BIN="${BIRD_BIN:-$SKILL_DATA_DIR/venv/node_modules/.bin/bird}"
+if [[ ! -x "$BIRD_BIN" ]]; then
+  bash "$SKILL_ROOT/scripts/setup.sh"
+fi
+COOKIE_SOURCE="${BIRD_COOKIE_SOURCE:-}"
+BIRD_ARGS=("$BIRD_BIN")
+if [[ -n "$COOKIE_SOURCE" ]]; then
+  BIRD_ARGS+=("--cookie-source" "$COOKIE_SOURCE")
+fi
+
+if [[ -z "${BIRD_EXPECTED_USER:-}" ]]; then
+  echo "BIRD_EXPECTED_USER is not set in $ENV_FILE." >&2
+  exit 2
+fi
+
+EXPECTED_USER="${BIRD_EXPECTED_USER#@}"
+EXPECTED_USER_LOWER="$(printf "%s" "$EXPECTED_USER" | tr '[:upper:]' '[:lower:]')"
+
+check_whoami_json() {
+  local raw_json="$1"
+  BIRD_WHOAMI_JSON="$raw_json" python3 - "$EXPECTED_USER_LOWER" <<'PY' || return 1
+import json
+import os
+import sys
+
+expected = sys.argv[1].strip().lower()
+raw = os.environ.get("BIRD_WHOAMI_JSON", "")
+data = json.loads(raw)
+
+def iter_strings(obj):
+    if isinstance(obj, str):
+        yield obj
+    elif isinstance(obj, dict):
+        for value in obj.values():
+            yield from iter_strings(value)
+    elif isinstance(obj, list):
+        for value in obj:
+            yield from iter_strings(value)
+
+for value in iter_strings(data):
+    candidate = value.strip().lstrip("@").lower()
+    if expected and (candidate == expected or expected in candidate):
+        raise SystemExit(0)
+
+raise SystemExit(1)
+PY
+}
+
+WHOAMI_JSON="$("${BIRD_ARGS[@]}" whoami --json 2>/dev/null || true)"
+if [[ -n "$WHOAMI_JSON" ]]; then
+  if check_whoami_json "$WHOAMI_JSON"; then
+    exec "${BIRD_ARGS[@]}" bookmarks --json
+  fi
+fi
+
+WHOAMI_TEXT="$("${BIRD_ARGS[@]}" whoami 2>/dev/null || true)"
+if [[ -z "$WHOAMI_TEXT" ]]; then
+  echo "bird whoami failed. Ensure bird is authenticated and try again." >&2
+  exit 3
+fi
+
+if ! printf "%s" "$WHOAMI_TEXT" | tr '[:upper:]' '[:lower:]' | grep -Fq "$EXPECTED_USER_LOWER"; then
+  echo "bird whoami user mismatch. Expected @$EXPECTED_USER." >&2
+  echo "whoami output: $WHOAMI_TEXT" >&2
+  exit 3
+fi
+
+exec "${BIRD_ARGS[@]}" bookmarks --json
