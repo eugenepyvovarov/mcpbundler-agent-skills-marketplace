@@ -670,6 +670,24 @@
       "category": "Development",
       "strict": false,
       "version": "d9c287202999481777868c4ce7441ced847350b3"
+    },
+    {
+      "name": "agent-browser",
+      "source": "./agent-browser",
+      "description": "Automates browser interactions for web testing, form filling, screenshots, and data extraction. Use when the user needs to navigate websites, interact with web pages, fill forms, take screenshots, test web applications, or extract information from web pages.",
+      "author": {
+        "name": "Vercel Labs"
+      },
+      "repository": "https://github.com/vercel-labs/agent-browser",
+      "homepage": "https://github.com/vercel-labs/agent-browser/tree/main/skills/agent-browser",
+      "keywords": [
+        "browser",
+        "automation",
+        "testing"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "03a53c9f36a3b946a062b7115bccfda03b8f202a"
     }
   ]
 }

@@ -25,6 +25,7 @@ Owner: eugenepyvovarov
 
 | Skill | Description |
 | --- | --- |
+| `agent-browser` | Automates browser interactions for web testing, form filling, screenshots, and data extraction. Use when the user needs to navigate websites, interact with web pages, fill forms, take screenshots, test web applications, or extract information from web pages.<br><br>Origin: https://github.com/vercel-labs/agent-browser |
 | `enterprise-readiness-skill` | Assess and enhance software projects for enterprise-grade security, quality, and automation. Use when evaluating projects for production readiness, implementing supply chain security (SLSA, signing, SBOMs), hardening CI/CD pipelines, or establishing quality gates. Aligned with OpenSSF Scorecard, Best Practices Badge (all levels), SLSA, and S2C2F. By Netresearch.<br><br>Origin: https://github.com/netresearch/enterprise-readiness-skill |
 | `git-workflow-skill` | Agent Skill: Git workflow best practices for teams and CI/CD. Use when establishing branching strategies, implementing Conventional Commits, configuring PRs, or integrating Git with CI/CD. By Netresearch.<br><br>Origin: https://github.com/netresearch/git-workflow-skill |
 | `n8n-code-javascript` | Write JavaScript code in n8n Code nodes. Use when writing JavaScript in n8n, using $input/$json/$node syntax, making HTTP requests with $helpers, working with dates using DateTime, troubleshooting Code node errors, or choosing between Code node modes.<br><br>Origin: https://github.com/czlonkowski/n8n-skills |
