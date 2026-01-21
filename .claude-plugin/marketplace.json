@@ -688,6 +688,24 @@
       "category": "Development",
       "strict": false,
       "version": "03a53c9f36a3b946a062b7115bccfda03b8f202a"
+    },
+    {
+      "name": "remotion",
+      "source": "./remotion",
+      "description": "Best practices for Remotion - Video creation in React",
+      "author": {
+        "name": "remotion-dev"
+      },
+      "repository": "https://github.com/remotion-dev/skills",
+      "homepage": "https://github.com/remotion-dev/skills/tree/main/skills/remotion",
+      "keywords": [
+        "remotion",
+        "video",
+        "react"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "9550e1643dd451d3f8c131579d8ae827b2ce3eea"
     }
   ]
 }
