@@ -1408,6 +1408,78 @@
       "category": "Development",
       "strict": false,
       "version": "b6bdc17bcb3e180c67efc8016b7d01df66c0d5fe"
+    },
+    {
+      "name": "writing-clearly-and-concisely",
+      "source": "./writing-clearly-and-concisely",
+      "description": "Use when writing prose humans will read—documentation, commit messages, error messages, explanations, reports, or UI text. Applies Strunk's timeless rules for clearer, stronger, more professional writing.",
+      "author": {
+        "name": "softaworks"
+      },
+      "repository": "https://github.com/softaworks/agent-toolkit",
+      "homepage": "https://github.com/softaworks/agent-toolkit/tree/main/skills/writing-clearly-and-concisely",
+      "keywords": [
+        "writing",
+        "documentation",
+        "communication"
+      ],
+      "category": "Productivity",
+      "strict": false,
+      "version": "011baf4acea99174acb5486a9b662a7e084be63b"
+    },
+    {
+      "name": "c4-architecture",
+      "source": "./c4-architecture",
+      "description": "Generate architecture documentation using C4 model Mermaid diagrams. Use when asked to create architecture diagrams, document system architecture, visualize software structure, create C4 diagrams, or generate context/container/component/deployment diagrams. Triggers include \"architecture diagram\", \"C4 diagram\", \"system context\", \"container diagram\", \"component diagram\", \"deployment diagram\", \"document architecture\", \"visualize architecture\".",
+      "author": {
+        "name": "softaworks"
+      },
+      "repository": "https://github.com/softaworks/agent-toolkit",
+      "homepage": "https://github.com/softaworks/agent-toolkit/tree/main/skills/c4-architecture",
+      "keywords": [
+        "architecture",
+        "c4",
+        "diagrams"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "06825f04669d4364a16abc267650c86cf153d349"
+    },
+    {
+      "name": "mermaid-diagrams",
+      "source": "./mermaid-diagrams",
+      "description": "Comprehensive guide for creating software diagrams using Mermaid syntax. Use when users need to create, visualize, or document software through diagrams including class diagrams (domain modeling, object-oriented design), sequence diagrams (application flows, API interactions, code execution), flowcharts (processes, algorithms, user journeys), entity relationship diagrams (database schemas), C4 architecture diagrams (system context, containers, components), state diagrams, git graphs, pie charts, gantt charts, or any other diagram type. Triggers include requests to \"diagram\", \"visualize\", \"model\", \"map out\", \"show the flow\", or when explaining system architecture, database design, code structure, or user/application flows.",
+      "author": {
+        "name": "softaworks"
+      },
+      "repository": "https://github.com/softaworks/agent-toolkit",
+      "homepage": "https://github.com/softaworks/agent-toolkit/tree/main/skills/mermaid-diagrams",
+      "keywords": [
+        "mermaid",
+        "diagrams",
+        "documentation"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "06825f04669d4364a16abc267650c86cf153d349"
+    },
+    {
+      "name": "crafting-effective-readmes",
+      "source": "./crafting-effective-readmes",
+      "description": "Use when writing or improving README files. Not all READMEs are the same — provides templates and guidance matched to your audience and project type.",
+      "author": {
+        "name": "softaworks"
+      },
+      "repository": "https://github.com/softaworks/agent-toolkit",
+      "homepage": "https://github.com/softaworks/agent-toolkit/tree/main/skills/crafting-effective-readmes",
+      "keywords": [
+        "readme",
+        "documentation",
+        "markdown"
+      ],
+      "category": "Productivity",
+      "strict": false,
+      "version": "011baf4acea99174acb5486a9b662a7e084be63b"
     }
   ]
 }
