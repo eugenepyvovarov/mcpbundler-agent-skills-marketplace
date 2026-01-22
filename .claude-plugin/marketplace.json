@@ -706,6 +706,258 @@
       "category": "Development",
       "strict": false,
       "version": "9550e1643dd451d3f8c131579d8ae827b2ce3eea"
+    },
+    {
+      "name": "code-recon",
+      "source": "./code-recon",
+      "description": "Build deep architectural understanding through ultra-granular code analysis. Use when doing security audits, code reviews, or getting oriented in an unfamiliar codebase.",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/code-recon",
+      "keywords": [
+        "security",
+        "architecture",
+        "audit"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "dflow",
+      "source": "./dflow",
+      "description": "Comprehensive guide for building Solana trading apps using DFlow's Swap API. Use when integrating quotes, routing, imperative/declarative swaps, or prediction markets.",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/dflow",
+      "keywords": [
+        "solana",
+        "trading",
+        "swaps"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "drift-protocol",
+      "source": "./drift-protocol",
+      "description": "Complete Drift Protocol SDK for building perpetual futures, spot trading, and DeFi applications on Solana. Use when building trading bots, integrating Drift markets, managing positions, or working with vaults.",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/drift-protocol",
+      "keywords": [
+        "solana",
+        "drift",
+        "perps"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "example-skill",
+      "source": "./example-skill",
+      "description": "An example skill demonstrating the basic structure and format",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/example-skill",
+      "keywords": [
+        "skill-setup",
+        "boilerplate",
+        "documentation"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "helius",
+      "source": "./helius",
+      "description": "Comprehensive guide for Helius - Solana's leading RPC and API infrastructure provider. Covers RPC nodes, DAS (Digital Asset Standard) API, Enhanced Transactions, Priority Fees, Webhooks, ZK Compression, LaserStream gRPC, and the Helius SDK for building high-performance Solana applications",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/helius",
+      "keywords": [
+        "solana",
+        "rpc",
+        "webhooks"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "kamino",
+      "source": "./kamino",
+      "description": "Complete guide for Kamino Finance - Solana's leading DeFi protocol for lending, borrowing, liquidity management, and leverage trading. Covers klend-sdk (lending), kliquidity-sdk (automated liquidity strategies), scope-sdk (oracle aggregator), multiply/leverage operations, vaults, and obligation orders.",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/kamino",
+      "keywords": [
+        "solana",
+        "kamino",
+        "lending"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "magicblock",
+      "source": "./magicblock",
+      "description": "Comprehensive guide for building high-performance Solana apps with MagicBlock Ephemeral Rollups. Use when you need sub-10ms latency, gasless transactions, or rollup architecture guidance.",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/magicblock",
+      "keywords": [
+        "solana",
+        "rollups",
+        "performance"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "meteora",
+      "source": "./meteora",
+      "description": "Complete Meteora DeFi SDK suite for building liquidity pools, AMMs, bonding curves, vaults, and token launches on Solana. Use when integrating DLMM, DAMM v2, Dynamic Bonding Curves, Alpha Vaults, or Stake-for-Fee functionality.",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/meteora",
+      "keywords": [
+        "solana",
+        "defi",
+        "meteora"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "pinocchio-development",
+      "source": "./pinocchio-development",
+      "description": "Comprehensive guide for building high-performance Solana programs using Pinocchio - the zero-dependency, zero-copy framework. Covers account validation, CPI patterns, optimization techniques, and migration from Anchor.",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/pinocchio-development",
+      "keywords": [
+        "solana",
+        "rust",
+        "pinocchio"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "raydium",
+      "source": "./raydium",
+      "description": "Comprehensive guide for integrating Raydium AMMs on Solana. Use when building swaps, liquidity, and farming features with CLMM/CPMM/AMM via the Raydium SDK.",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/raydium",
+      "keywords": [
+        "solana",
+        "defi",
+        "raydium"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "solana-agent-kit",
+      "source": "./solana-agent-kit",
+      "description": "Comprehensive guide for building AI agents that interact with Solana blockchain using SendAI's Solana Agent Kit. Covers 60+ actions, LangChain/Vercel AI integration, MCP server setup, and autonomous agent patterns.",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/solana-agent-kit",
+      "keywords": [
+        "solana",
+        "agents",
+        "mcp"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "solana-kit",
+      "source": "./solana-kit",
+      "description": "Comprehensive guide for building Solana apps with @solana/kit (web3.js 2.0). Use when you need modern RPC/subscriptions, transaction building, signing, and program interactions in JavaScript/TypeScript.",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/solana-kit",
+      "keywords": [
+        "solana",
+        "sdk",
+        "javascript"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "solana-kit-migration",
+      "source": "./solana-kit-migration",
+      "description": "Helps developers understand when to use @solana/kit vs @solana/web3.js (v1), provides migration guidance, API mappings, and handles edge cases for Solana JavaScript SDK transitions",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/solana-kit-migration",
+      "keywords": [
+        "solana",
+        "migration",
+        "javascript"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "vulnhunter",
+      "source": "./vulnhunter",
+      "description": "Security audit skill for detecting dangerous APIs, footgun patterns, and vulnerability variants. Use when reviewing code for security issues or doing variant analysis.",
+      "author": {
+        "name": "sendaifun"
+      },
+      "repository": "https://github.com/sendaifun/skills",
+      "homepage": "https://github.com/sendaifun/skills/tree/21695b7f5b3a74f899122d85cfbbe3e56f229380/skills/vulnhunter",
+      "keywords": [
+        "security",
+        "static-analysis",
+        "audit"
+      ],
+      "category": "Solana development",
+      "strict": false,
+      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
     }
   ]
 }

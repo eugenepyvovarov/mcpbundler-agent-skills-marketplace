@@ -9,6 +9,7 @@ Owner: eugenepyvovarov
 - [AI/Machine Learning](#aimachine-learning)
 - [Development](#development)
 - [Productivity](#productivity)
+- [Solana development](#solana-development)
 - [Swift Development](#swift-development)
 
 ### AI/Machine Learning
@@ -60,6 +61,25 @@ Owner: eugenepyvovarov
 | `spec-to-plan` | Transform project descriptions and feature requests into comprehensive specifications and actionable task lists. Use when the user wants to: (1) Create a specification from a project/feature description, (2) Generate a detailed plan with task breakdown, (3) Clarify requirements before implementation, (4) Convert ideas into structured development plans with progress tracking. Works with or without existing codebase files.<br><br>Origin: https://mcpbundler.com |
 | `things3-agent-skill` | Manage tasks, projects, areas, headings, and tags in the Things 3 macOS app via a local CLI (list Inbox/Today/Upcoming/Anytime/Someday/Logbook, search, create/update/complete/cancel items, open items in Things). Use when Codex needs to manage Things 3 on macOS.<br><br>Origin: https://github.com/eugenepyvovarov/things3-agent-skill |
 | `x-bookmarks-agent-skill` | Read X/Twitter bookmarks using the bird CLI, verify the active account via `bird whoami`, and return bookmarks as JSON. Use when the user asks to list, search, summarize, or export X bookmarks, or when you must validate the active X account before fetching bookmarks.<br><br>Origin: https://github.com/eugenepyvovarov/x-bookmarks-agent-skill |
+
+### Solana development
+
+| Skill | Description |
+| --- | --- |
+| `code-recon` | Build deep architectural understanding through ultra-granular code analysis. Use when doing security audits, code reviews, or getting oriented in an unfamiliar codebase.<br><br>Origin: https://github.com/sendaifun/skills |
+| `dflow` | Comprehensive guide for building Solana trading apps using DFlow's Swap API. Use when integrating quotes, routing, imperative/declarative swaps, or prediction markets.<br><br>Origin: https://github.com/sendaifun/skills |
+| `drift-protocol` | Complete Drift Protocol SDK for building perpetual futures, spot trading, and DeFi applications on Solana. Use when building trading bots, integrating Drift markets, managing positions, or working with vaults.<br><br>Origin: https://github.com/sendaifun/skills |
+| `example-skill` | An example skill demonstrating the basic structure and format.<br><br>Origin: https://github.com/sendaifun/skills |
+| `helius` | Comprehensive guide for Helius - Solana's leading RPC and API infrastructure provider. Covers RPC nodes, DAS (Digital Asset Standard) API, Enhanced Transactions, Priority Fees, Webhooks, ZK Compression, LaserStream gRPC, and the Helius SDK for building high-performance Solana applications.<br><br>Origin: https://github.com/sendaifun/skills |
+| `kamino` | Complete guide for Kamino Finance - Solana's leading DeFi protocol for lending, borrowing, liquidity management, and leverage trading. Covers klend-sdk (lending), kliquidity-sdk (automated liquidity strategies), scope-sdk (oracle aggregator), multiply/leverage operations, vaults, and obligation orders.<br><br>Origin: https://github.com/sendaifun/skills |
+| `magicblock` | Comprehensive guide for building high-performance Solana apps with MagicBlock Ephemeral Rollups. Use when you need sub-10ms latency, gasless transactions, or rollup architecture guidance.<br><br>Origin: https://github.com/sendaifun/skills |
+| `meteora` | Complete Meteora DeFi SDK suite for building liquidity pools, AMMs, bonding curves, vaults, and token launches on Solana. Use when integrating DLMM, DAMM v2, Dynamic Bonding Curves, Alpha Vaults, or Stake-for-Fee functionality.<br><br>Origin: https://github.com/sendaifun/skills |
+| `pinocchio-development` | Comprehensive guide for building high-performance Solana programs using Pinocchio - the zero-dependency, zero-copy framework. Covers account validation, CPI patterns, optimization techniques, and migration from Anchor.<br><br>Origin: https://github.com/sendaifun/skills |
+| `raydium` | Comprehensive guide for integrating Raydium AMMs on Solana. Use when building swaps, liquidity, and farming features with CLMM/CPMM/AMM via the Raydium SDK.<br><br>Origin: https://github.com/sendaifun/skills |
+| `solana-agent-kit` | Comprehensive guide for building AI agents that interact with Solana blockchain using SendAI's Solana Agent Kit. Covers 60+ actions, LangChain/Vercel AI integration, MCP server setup, and autonomous agent patterns.<br><br>Origin: https://github.com/sendaifun/skills |
+| `solana-kit` | Comprehensive guide for building Solana apps with @solana/kit (web3.js 2.0). Use when you need modern RPC/subscriptions, transaction building, signing, and program interactions in JavaScript/TypeScript.<br><br>Origin: https://github.com/sendaifun/skills |
+| `solana-kit-migration` | Helps developers understand when to use @solana/kit vs @solana/web3.js (v1), provides migration guidance, API mappings, and handles edge cases for Solana JavaScript SDK transitions.<br><br>Origin: https://github.com/sendaifun/skills |
+| `vulnhunter` | Security audit skill for detecting dangerous APIs, footgun patterns, and vulnerability variants. Use when reviewing code for security issues or doing variant analysis.<br><br>Origin: https://github.com/sendaifun/skills |
 
 ### Swift Development
 

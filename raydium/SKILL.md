@@ -1,0 +1,237 @@
+---
+name: raydium
+description: Comprehensive guide for integrating Raydium AMMs on Solana. Use when building swaps, liquidity, and farming features with CLMM/CPMM/AMM via the Raydium SDK.
+---
+
+# Raydium Protocol Integration Guide
+
+A comprehensive guide for building applications with Raydium - Solana's leading AMM and liquidity protocol.
+
+## Overview
+
+Raydium is a suite of automated market makers (AMMs) on Solana offering:
+- **CLMM** - Concentrated Liquidity Market Maker for capital-efficient LP positions
+- **CPMM** - Constant Product Market Maker with Token22 support (no OpenBook required)
+- **AMM** - Classic AMM integrated with OpenBook CLOB
+- **Farms** - Yield farming and staking rewards
+
+## Quick Start
+
+### Installation
+
+```bash
+npm install @raydium-io/raydium-sdk-v2
+# or
+yarn add @raydium-io/raydium-sdk-v2
+```
+
+### Basic Setup
+
+```typescript
+import { Raydium } from '@raydium-io/raydium-sdk-v2';
+import { Connection, Keypair } from '@solana/web3.js';
+import bs58 from 'bs58';
+
+// Setup connection and wallet
+const connection = new Connection('https://api.mainnet-beta.solana.com');
+const owner = Keypair.fromSecretKey(bs58.decode('YOUR_SECRET_KEY'));
+
+// Initialize SDK
+const raydium = await Raydium.load({
+  connection,
+  owner,
+  cluster: 'mainnet',
+  disableLoadToken: false, // Load token list
+});
+
+// Access token data
+const tokenList = raydium.token.tokenList;
+const tokenMap = raydium.token.tokenMap;
+
+// Access account data
+const tokenAccounts = raydium.account.tokenAccounts;
+```
+
+## Pool Types
+
+### CLMM (Concentrated Liquidity)
+
+Allows LPs to concentrate liquidity in specific price ranges for higher capital efficiency.
+
+```typescript
+// Fetch CLMM pool
+const poolId = 'POOL_ID_HERE';
+const poolInfo = await raydium.clmm.getPoolInfoFromRpc(poolId);
+
+// Or from API (mainnet only)
+const poolData = await raydium.api.fetchPoolById({ ids: poolId });
+```
+
+### CPMM (Constant Product)
+
+Simplified AMM without OpenBook market requirement, supports Token22.
+
+```typescript
+// Fetch CPMM pool
+const cpmmPool = await raydium.cpmm.getPoolInfoFromRpc(poolId);
+```
+
+### AMM (Legacy)
+
+Classic AMM integrated with OpenBook central limit order book.
+
+```typescript
+// Fetch AMM pool
+const ammPool = await raydium.liquidity.getPoolInfoFromRpc({ poolId });
+```
+
+## Core Operations
+
+### Swap
+
+```typescript
+import { CurveCalculator } from '@raydium-io/raydium-sdk-v2';
+
+// Calculate swap
+const { amountOut, fee } = CurveCalculator.swapBaseInput({
+  poolInfo,
+  amountIn: 1000000n, // lamports
+  mintIn: inputMint,
+  mintOut: outputMint,
+});
+
+// Execute CPMM swap
+const { execute } = await raydium.cpmm.swap({
+  poolInfo,
+  inputAmount: 1000000n,
+  inputMint,
+  slippage: 0.01, // 1%
+  txVersion: 'V0',
+});
+
+await execute({ sendAndConfirm: true });
+```
+
+### Add Liquidity
+
+```typescript
+// CPMM deposit
+const { execute } = await raydium.cpmm.addLiquidity({
+  poolInfo,
+  inputAmount: 1000000n,
+  baseIn: true,
+  slippage: 0.01,
+});
+
+await execute({ sendAndConfirm: true });
+```
+
+### Create Pool
+
+```typescript
+// Create CPMM pool
+const { execute } = await raydium.cpmm.createPool({
+  mintA,
+  mintB,
+  mintAAmount: 1000000n,
+  mintBAmount: 1000000n,
+  startTime: new BN(0),
+  feeConfig, // from API
+  txVersion: 'V0',
+});
+
+const { txId } = await execute({ sendAndConfirm: true });
+```
+
+## Program IDs
+
+| Program | Mainnet | Devnet |
+|---------|---------|--------|
+| AMM | `675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8` | `DRaya7Kj3aMWQSy19kSjvmuwq9docCHofyP9kanQGaav` |
+| CLMM | `CAMMCzo5YL8w4VFF8KVHrK22GGUsp5VTaW7grrKgrWqK` | `devi51mZmdwUJGU9hjN27vEz64Gps7uUefqxg27EAtH` |
+| CPMM | `CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C` | `CPMDWBwJDtYax9qW7AyRuVC19Cc4L4Vcy4n2BHAbHkCW` |
+
+## API Endpoints
+
+```typescript
+// Mainnet API
+const API_URL = 'https://api-v3.raydium.io';
+
+// Devnet API
+const DEVNET_API = 'https://api-v3.raydium.io/main/';
+
+// Common endpoints
+const endpoints = {
+  tokenList: '/mint/list',
+  poolList: '/pools/info/list',
+  poolById: '/pools/info/ids',
+  farmList: '/farms/info/list',
+  clmmConfigs: '/clmm/configs',
+};
+```
+
+## Transaction Options
+
+```typescript
+const { execute } = await raydium.cpmm.swap({
+  poolInfo,
+  inputAmount,
+  inputMint,
+  slippage: 0.01,
+  txVersion: 'V0', // or 'LEGACY'
+  computeBudgetConfig: {
+    units: 600000,
+    microLamports: 100000, // priority fee
+  },
+});
+
+// Execute with options
+const { txId } = await execute({
+  sendAndConfirm: true,
+  skipPreflight: true,
+});
+
+console.log(`https://solscan.io/tx/${txId}`);
+```
+
+## Key Features
+
+| Feature | CLMM | CPMM | AMM |
+|---------|------|------|-----|
+| Concentrated Liquidity | Yes | No | No |
+| Token22 Support | Limited | Yes | No |
+| OpenBook Required | No | No | Yes |
+| Custom Price Ranges | Yes | No | No |
+| LP NFT Positions | Yes | No | No |
+
+## Resources
+
+- **SDK**: https://github.com/raydium-io/raydium-sdk-V2
+- **Demos**: https://github.com/raydium-io/raydium-sdk-V2-demo
+- **IDL**: https://github.com/raydium-io/raydium-idl
+- **CLMM Program**: https://github.com/raydium-io/raydium-clmm
+- **CPMM Program**: https://github.com/raydium-io/raydium-cp-swap
+- **AMM Program**: https://github.com/raydium-io/raydium-amm
+- **CPI Examples**: https://github.com/raydium-io/raydium-cpi
+
+## Skill Structure
+
+```
+raydium/
+├── SKILL.md                      # This file
+├── resources/
+│   ├── sdk-api-reference.md      # Complete SDK API
+│   ├── program-ids.md            # All program addresses
+│   └── pool-types.md             # Pool type comparison
+├── examples/
+│   ├── swap/README.md            # Token swap examples
+│   ├── clmm-pool/README.md       # CLMM pool creation
+│   ├── clmm-position/README.md   # CLMM position management
+│   ├── cpmm-pool/README.md       # CPMM pool operations
+│   └── liquidity/README.md       # Liquidity management
+├── templates/
+│   └── raydium-setup.ts          # SDK setup template
+└── docs/
+    ├── clmm-guide.md             # CLMM deep dive
+    └── troubleshooting.md        # Common issues
+```
