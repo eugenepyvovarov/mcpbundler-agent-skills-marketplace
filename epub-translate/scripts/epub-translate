@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SKILL_NAME="epub-translate"
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PROJECT_ROOT="$(cd "$SKILL_ROOT/../../.." && pwd)"
+SKILL_DATA_DIR="${SKILL_DATA_DIR:-$PROJECT_ROOT/.skills-data/$SKILL_NAME}"
+
+export SKILL_NAME
+export SKILL_ROOT
+export SKILL_DATA_ROOT="${SKILL_DATA_ROOT:-$PROJECT_ROOT/.skills-data}"
+export SKILL_DATA_DIR
+export PYTHONPYCACHEPREFIX="${PYTHONPYCACHEPREFIX:-$SKILL_DATA_DIR/cache/pycache}"
+
+mkdir -p "$PYTHONPYCACHEPREFIX"
+
+exec python3 "$SKILL_ROOT/scripts/epub_translate.py" "$@"

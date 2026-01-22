@@ -958,6 +958,24 @@
       "category": "Solana development",
       "strict": false,
       "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+    },
+    {
+      "name": "epub-translate",
+      "source": "./epub-translate",
+      "description": "Translate EPUB (.epub) ebooks to another language by unpacking the EPUB container, extracting XHTML block-level fragments into JSONL translation units, translating them via the OpenAI Responses API (e.g. gpt-5.1 / gpt-5-mini) while preserving markup, updating language metadata, and repackaging a valid EPUB (mimetype-first and uncompressed). Use when Codex needs to translate and rebuild EPUB files.",
+      "author": {
+        "name": "eugenepyvovarov"
+      },
+      "repository": "https://github.com/eugenepyvovarov/epub-translate-skill",
+      "homepage": "https://github.com/eugenepyvovarov/epub-translate-skill/tree/43c4657f5eab7df30cf68a07fde46c162583260e",
+      "keywords": [
+        "epub",
+        "translation",
+        "openai"
+      ],
+      "category": "Productivity",
+      "strict": false,
+      "version": "43c4657f5eab7df30cf68a07fde46c162583260e"
     }
   ]
 }
