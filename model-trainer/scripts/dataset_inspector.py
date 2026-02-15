@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # /// script
+# requires-python = ">=3.10"
 # dependencies = []
 # ///
 """
@@ -139,16 +140,16 @@ def generate_mapping_code(method: str, info: Dict[str, Any]) -> str:
         
         if has_context and response_col:
             return f"""def format_for_sft(example):
-    text = f"Instruction: {{example['{prompt_col}']}}\\n\\n"
+    text = f"Instruction: {{example['{prompt_col}']}}\n\n"
     if example.get('context'):
-        text += f"Context: {{example['context']}}\\n\\n"
+        text += f"Context: {{example['context']}}\n\n"
     text += f"Response: {{example['{response_col}']}}"
     return {{'text': text}}
 
 dataset = dataset.map(format_for_sft, remove_columns=dataset.column_names)"""
         elif response_col:
             return f"""def format_for_sft(example):
-    return {{'text': f"{{example['{prompt_col}']}}\\n\\n{{example['{response_col}']}}}}
+    return {{'text': f"{{example['{prompt_col}']}}\n\n{{example['{response_col}']}}}}
 
 dataset = dataset.map(format_for_sft, remove_columns=dataset.column_names)"""
         else:

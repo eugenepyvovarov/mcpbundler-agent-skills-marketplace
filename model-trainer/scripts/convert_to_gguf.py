@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # /// script
+# requires-python = ">=3.10"
 # dependencies = [
 #     "transformers>=4.36.0",
 #     "peft>=0.7.0",
@@ -22,6 +23,11 @@ This script converts a LoRA fine-tuned model to GGUF format for use with:
 - LM Studio
 - Other GGUF-compatible tools
 
+PREREQUISITES (install these FIRST):
+- Ubuntu/Debian: sudo apt-get update && sudo apt-get install -y build-essential cmake
+- RHEL/CentOS: sudo yum groupinstall -y "Development Tools" && sudo yum install -y cmake
+- macOS: xcode-select --install && brew install cmake
+
 Usage:
     Set environment variables:
     - ADAPTER_MODEL: Your fine-tuned model (e.g., "username/my-finetuned-model")
@@ -30,18 +36,76 @@ Usage:
     - HF_USERNAME: Your Hugging Face username (optional, for README)
 
 Dependencies: All required packages are declared in PEP 723 header above.
-Build tools (gcc, cmake) are installed automatically by this script.
 """
 
 import os
+import sys
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 from huggingface_hub import HfApi
 import subprocess
 
+
+def check_system_dependencies():
+    """Check if required system packages are available."""
+    print("🔍 Checking system dependencies...")
+    
+    # Check for git
+    if subprocess.run(["which", "git"], capture_output=True).returncode != 0:
+        print("  ❌ git is not installed. Please install it:")
+        print("     Ubuntu/Debian: sudo apt-get install git")
+        print("     RHEL/CentOS: sudo yum install git")
+        print("     macOS: brew install git")
+        return False
+    
+    # Check for make or cmake
+    has_make = subprocess.run(["which", "make"], capture_output=True).returncode == 0
+    has_cmake = subprocess.run(["which", "cmake"], capture_output=True).returncode == 0
+    
+    if not has_make and not has_cmake:
+        print("  ❌ Neither make nor cmake found. Please install build tools:")
+        print("     Ubuntu/Debian: sudo apt-get install build-essential cmake")
+        print("     RHEL/CentOS: sudo yum groupinstall 'Development Tools' && sudo yum install cmake")
+        print("     macOS: xcode-select --install && brew install cmake")
+        return False
+    
+    print("  ✅ System dependencies found")
+    return True
+
+
+def run_command(cmd, description):
+    """Run a command with error handling."""
+    print(f"   {description}...")
+    try:
+        result = subprocess.run(
+            cmd,
+            check=True,
+            capture_output=True,
+            text=True
+        )
+        if result.stdout:
+            print(f"   {result.stdout[:200]}")  # Show first 200 chars
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"   ❌ Command failed: {' '.join(cmd)}")
+        if e.stdout:
+            print(f"   STDOUT: {e.stdout[:500]}")
+        if e.stderr:
+            print(f"   STDERR: {e.stderr[:500]}")
+        return False
+    except FileNotFoundError:
+        print(f"   ❌ Command not found: {cmd[0]}")
+        return False
+
+
 print("🔄 GGUF Conversion Script")
 print("=" * 60)
+
+# Check system dependencies first
+if not check_system_dependencies():
+    print("\n❌ Please install the missing system dependencies and try again.")
+    sys.exit(1)
 
 # Configuration from environment variables
 ADAPTER_MODEL = os.environ.get("ADAPTER_MODEL", "evalstate/qwen-capybara-medium")
@@ -58,72 +122,79 @@ print(f"   Output repo: {OUTPUT_REPO}")
 print("\n🔧 Step 1: Loading base model and LoRA adapter...")
 print("   (This may take a few minutes)")
 
-base_model = AutoModelForCausalLM.from_pretrained(
-    BASE_MODEL,
-    dtype=torch.float16,
-    device_map="auto",
-    trust_remote_code=True,
-)
-print("   ✅ Base model loaded")
+try:
+    base_model = AutoModelForCausalLM.from_pretrained(
+        BASE_MODEL,
+        dtype=torch.float16,
+        device_map="auto",
+        trust_remote_code=True,
+    )
+    print("   ✅ Base model loaded")
+except Exception as e:
+    print(f"   ❌ Failed to load base model: {e}")
+    sys.exit(1)
 
-# Load and merge adapter
-print("   Loading LoRA adapter...")
-model = PeftModel.from_pretrained(base_model, ADAPTER_MODEL)
-print("   ✅ Adapter loaded")
+try:
+    # Load and merge adapter
+    print("   Loading LoRA adapter...")
+    model = PeftModel.from_pretrained(base_model, ADAPTER_MODEL)
+    print("   ✅ Adapter loaded")
 
-print("   Merging adapter with base model...")
-merged_model = model.merge_and_unload()
-print("   ✅ Models merged!")
+    print("   Merging adapter with base model...")
+    merged_model = model.merge_and_unload()
+    print("   ✅ Models merged!")
+except Exception as e:
+    print(f"   ❌ Failed to merge models: {e}")
+    sys.exit(1)
 
-# Load tokenizer
-tokenizer = AutoTokenizer.from_pretrained(ADAPTER_MODEL, trust_remote_code=True)
-print("   ✅ Tokenizer loaded")
+try:
+    # Load tokenizer
+    tokenizer = AutoTokenizer.from_pretrained(ADAPTER_MODEL, trust_remote_code=True)
+    print("   ✅ Tokenizer loaded")
+except Exception as e:
+    print(f"   ❌ Failed to load tokenizer: {e}")
+    sys.exit(1)
 
 # Step 2: Save merged model temporarily
 print("\n💾 Step 2: Saving merged model...")
 merged_dir = "/tmp/merged_model"
-merged_model.save_pretrained(merged_dir, safe_serialization=True)
-tokenizer.save_pretrained(merged_dir)
-print(f"   ✅ Merged model saved to {merged_dir}")
+try:
+    merged_model.save_pretrained(merged_dir, safe_serialization=True)
+    tokenizer.save_pretrained(merged_dir)
+    print(f"   ✅ Merged model saved to {merged_dir}")
+except Exception as e:
+    print(f"   ❌ Failed to save merged model: {e}")
+    sys.exit(1)
 
 # Step 3: Install llama.cpp for conversion
 print("\n📥 Step 3: Setting up llama.cpp for GGUF conversion...")
 
-# CRITICAL: Install build tools FIRST (before cloning llama.cpp)
-print("   Installing build tools...")
-subprocess.run(
-    ["apt-get", "update", "-qq"],
-    check=True,
-    capture_output=True
-)
-subprocess.run(
-    ["apt-get", "install", "-y", "-qq", "build-essential", "cmake"],
-    check=True,
-    capture_output=True
-)
-print("   ✅ Build tools installed")
-
-print("   Cloning llama.cpp repository...")
-subprocess.run(
+# Clone llama.cpp repository
+if not run_command(
     ["git", "clone", "https://github.com/ggerganov/llama.cpp.git", "/tmp/llama.cpp"],
-    check=True,
-    capture_output=True
-)
-print("   ✅ llama.cpp cloned")
+    "Cloning llama.cpp repository"
+):
+    print("   Trying alternative clone method...")
+    # Try shallow clone
+    if not run_command(
+        ["git", "clone", "--depth", "1", "https://github.com/ggerganov/llama.cpp.git", "/tmp/llama.cpp"],
+        "Cloning llama.cpp (shallow)"
+    ):
+        sys.exit(1)
 
+# Install Python dependencies
 print("   Installing Python dependencies...")
-subprocess.run(
+if not run_command(
     ["pip", "install", "-r", "/tmp/llama.cpp/requirements.txt"],
-    check=True,
-    capture_output=True
-)
-# sentencepiece and protobuf are needed for tokenizer conversion
-subprocess.run(
+    "Installing llama.cpp requirements"
+):
+    print("   ⚠️  Some requirements may already be installed")
+
+if not run_command(
     ["pip", "install", "sentencepiece", "protobuf"],
-    check=True,
-    capture_output=True
-)
-print("   ✅ Dependencies installed")
+    "Installing tokenizer dependencies"
+):
+    print("   ⚠️  Tokenizer dependencies may already be installed")
 
 # Step 4: Convert to GGUF (FP16)
 print("\n🔄 Step 4: Converting to GGUF format (FP16)...")
@@ -134,27 +205,19 @@ convert_script = "/tmp/llama.cpp/convert_hf_to_gguf.py"
 model_name = ADAPTER_MODEL.split('/')[-1]
 gguf_file = f"{gguf_output_dir}/{model_name}-f16.gguf"
 
-print(f"   Running: python {convert_script} {merged_dir}")
-try:
-    result = subprocess.run(
-        [
-            "python", convert_script,
-            merged_dir,
-            "--outfile", gguf_file,
-            "--outtype", "f16"
-        ],
-        check=True,
-        capture_output=True,
-        text=True
-    )
-    print(result.stdout)
-    if result.stderr:
-        print("Warnings:", result.stderr)
-except subprocess.CalledProcessError as e:
-    print(f"❌ Conversion failed!")
-    print("STDOUT:", e.stdout)
-    print("STDERR:", e.stderr)
-    raise
+print(f"   Running conversion...")
+if not run_command(
+    [
+        sys.executable, convert_script,
+        merged_dir,
+        "--outfile", gguf_file,
+        "--outtype", "f16"
+    ],
+    f"Converting to FP16"
+):
+    print("   ❌ Conversion failed!")
+    sys.exit(1)
+
 print(f"   ✅ FP16 GGUF created: {gguf_file}")
 
 # Step 5: Quantize to different formats
@@ -162,32 +225,26 @@ print("\n⚙️  Step 5: Creating quantized versions...")
 
 # Build quantize tool using CMake (more reliable than make)
 print("   Building quantize tool with CMake...")
-try:
-    # Create build directory
-    os.makedirs("/tmp/llama.cpp/build", exist_ok=True)
+os.makedirs("/tmp/llama.cpp/build", exist_ok=True)
 
-    # Configure with CMake
-    subprocess.run(
-        ["cmake", "-B", "/tmp/llama.cpp/build", "-S", "/tmp/llama.cpp",
-         "-DGGML_CUDA=OFF"],  # Disable CUDA for faster build
-        check=True,
-        capture_output=True,
-        text=True
-    )
+# Configure with CMake
+if not run_command(
+    ["cmake", "-B", "/tmp/llama.cpp/build", "-S", "/tmp/llama.cpp",
+     "-DGGML_CUDA=OFF"],
+    "Configuring with CMake"
+):
+    print("   ❌ CMake configuration failed")
+    sys.exit(1)
 
-    # Build just the quantize tool
-    subprocess.run(
-        ["cmake", "--build", "/tmp/llama.cpp/build", "--target", "llama-quantize", "-j", "4"],
-        check=True,
-        capture_output=True,
-        text=True
-    )
-    print("   ✅ Quantize tool built")
-except subprocess.CalledProcessError as e:
-    print(f"   ❌ Build failed!")
-    print("STDOUT:", e.stdout)
-    print("STDERR:", e.stderr)
-    raise
+# Build just the quantize tool
+if not run_command(
+    ["cmake", "--build", "/tmp/llama.cpp/build", "--target", "llama-quantize", "-j", "4"],
+    "Building llama-quantize"
+):
+    print("   ❌ Build failed!")
+    sys.exit(1)
+
+print("   ✅ Quantize tool built")
 
 # Use the CMake build output path
 quantize_bin = "/tmp/llama.cpp/build/bin/llama-quantize"
@@ -204,16 +261,22 @@ for quant_type, description in quant_formats:
     print(f"   Creating {quant_type} quantization ({description})...")
     quant_file = f"{gguf_output_dir}/{model_name}-{quant_type.lower()}.gguf"
 
-    subprocess.run(
+    if not run_command(
         [quantize_bin, gguf_file, quant_file, quant_type],
-        check=True,
-        capture_output=True
-    )
-    quantized_files.append((quant_file, quant_type))
+        f"Quantizing to {quant_type}"
+    ):
+        print(f"   ⚠️  Skipping {quant_type} due to error")
+        continue
 
+    quantized_files.append((quant_file, quant_type))
+    
     # Get file size
     size_mb = os.path.getsize(quant_file) / (1024 * 1024)
     print(f"   ✅ {quant_type}: {size_mb:.1f} MB")
+
+if not quantized_files:
+    print("   ❌ No quantized versions were created successfully")
+    sys.exit(1)
 
 # Step 6: Upload to Hub
 print("\n☁️  Step 6: Uploading to Hugging Face Hub...")
@@ -223,28 +286,36 @@ api = HfApi()
 print(f"   Creating repository: {OUTPUT_REPO}")
 try:
     api.create_repo(repo_id=OUTPUT_REPO, repo_type="model", exist_ok=True)
-    print("   ✅ Repository created")
+    print("   ✅ Repository ready")
 except Exception as e:
     print(f"   ℹ️  Repository may already exist: {e}")
 
 # Upload FP16 version
 print("   Uploading FP16 GGUF...")
-api.upload_file(
-    path_or_fileobj=gguf_file,
-    path_in_repo=f"{model_name}-f16.gguf",
-    repo_id=OUTPUT_REPO,
-)
-print("   ✅ FP16 uploaded")
+try:
+    api.upload_file(
+        path_or_fileobj=gguf_file,
+        path_in_repo=f"{model_name}-f16.gguf",
+        repo_id=OUTPUT_REPO,
+    )
+    print("   ✅ FP16 uploaded")
+except Exception as e:
+    print(f"   ❌ Upload failed: {e}")
+    sys.exit(1)
 
 # Upload quantized versions
 for quant_file, quant_type in quantized_files:
     print(f"   Uploading {quant_type}...")
-    api.upload_file(
-        path_or_fileobj=quant_file,
-        path_in_repo=f"{model_name}-{quant_type.lower()}.gguf",
-        repo_id=OUTPUT_REPO,
-    )
-    print(f"   ✅ {quant_type} uploaded")
+    try:
+        api.upload_file(
+            path_or_fileobj=quant_file,
+            path_in_repo=f"{model_name}-{quant_type.lower()}.gguf",
+            repo_id=OUTPUT_REPO,
+        )
+        print(f"   ✅ {quant_type} uploaded")
+    except Exception as e:
+        print(f"   ❌ Upload failed for {quant_type}: {e}")
+        continue
 
 # Create README
 print("\n📝 Creating README...")
@@ -330,12 +401,15 @@ Inherits the license from the base model: {BASE_MODEL}
 *Converted to GGUF format using llama.cpp*
 """
 
-api.upload_file(
-    path_or_fileobj=readme_content.encode(),
-    path_in_repo="README.md",
-    repo_id=OUTPUT_REPO,
-)
-print("   ✅ README uploaded")
+try:
+    api.upload_file(
+        path_or_fileobj=readme_content.encode(),
+        path_in_repo="README.md",
+        repo_id=OUTPUT_REPO,
+    )
+    print("   ✅ README uploaded")
+except Exception as e:
+    print(f"   ❌ README upload failed: {e}")
 
 print("\n" + "=" * 60)
 print("✅ GGUF Conversion Complete!")

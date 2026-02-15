@@ -1,8 +1,3 @@
----
-name: vulnhunter
-description: Security audit skill for detecting dangerous APIs, footgun patterns, and vulnerability variants. Use when reviewing code for security issues or doing variant analysis.
----
-
 # VulnHunter - Security Vulnerability Detection & Analysis
 
 A comprehensive security audit skill for identifying dangerous APIs, footgun patterns, error-prone configurations, and hunting for vulnerability variants across codebases. Inspired by Trail of Bits' sharp-edges and variant-analysis methodologies.

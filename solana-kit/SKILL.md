@@ -1,8 +1,3 @@
----
-name: solana-kit
-description: Comprehensive guide for building Solana apps with @solana/kit (web3.js 2.0). Use when you need modern RPC/subscriptions, transaction building, signing, and program interactions in JavaScript/TypeScript.
----
-
 # Solana Kit Development Guide
 
 A comprehensive guide for building Solana applications with `@solana/kit` - the modern, tree-shakeable, zero-dependency JavaScript SDK from Anza.

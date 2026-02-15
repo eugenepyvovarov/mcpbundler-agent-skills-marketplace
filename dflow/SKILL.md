@@ -1,8 +1,3 @@
----
-name: dflow
-description: Comprehensive guide for building Solana trading apps using DFlow's Swap API. Use when integrating quotes, routing, imperative/declarative swaps, or prediction markets.
----
-
 # DFlow - Next-Generation Solana Trading Infrastructure
 
 Comprehensive guide for building trading applications on Solana using DFlow's Swap API. Enables token swaps with optimal routing, lower slippage, and access to both spot markets and prediction markets.

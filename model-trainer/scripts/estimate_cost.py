@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 # /// script
+# requires-python = ">=3.10"
 # dependencies = []
 # ///
 """
 Estimate training time and cost for TRL jobs.
 
-Usage:
-    python estimate_cost.py --model <model> --dataset <dataset> --hardware <flavor>
+Usage with uv:
+    uv run estimate_cost.py --model <model> --dataset <dataset> --hardware <flavor>
     
 Example:
-    python estimate_cost.py --model Qwen/Qwen2.5-0.5B --dataset trl-lib/Capybara --hardware a10g-large
+    uv run estimate_cost.py --model Qwen/Qwen2.5-0.5B --dataset trl-lib/Capybara --hardware a10g-large
 """
 
 import argparse

@@ -1,5 +1,5 @@
 ---
-name: hugging-face-evaluation-manager
+name: hugging-face-evaluation
 description: Add and manage evaluation results in Hugging Face model cards. Supports extracting eval tables from README content, importing scores from Artificial Analysis API, and running custom model evaluations with vLLM/lighteval. Works with the model-index metadata format.
 ---
 
@@ -64,6 +64,12 @@ uv run scripts/evaluation_manager.py get-prs --repo-id "username/model-name"
 This prevents spamming model repositories with duplicate evaluation PRs.
 
 ---
+
+> **All paths are relative to the directory containing this SKILL.md
+file.**
+> Before running any script, first `cd` to that directory or use the full
+path.
+
 
 **Use `--help` for the latest workflow guidance.** Works with plain Python or `uv run`:
 ```bash
@@ -180,7 +186,7 @@ Fetch benchmark scores from Artificial Analysis API and add them to a model card
 
 **Basic Usage:**
 ```bash
-AA_API_KEY="your-api-key" python scripts/evaluation_manager.py import-aa \
+AA_API_KEY="your-api-key" uv run scripts/evaluation_manager.py import-aa \
   --creator-slug "anthropic" \
   --model-name "claude-sonnet-4" \
   --repo-id "username/model-name"
@@ -193,7 +199,7 @@ echo "AA_API_KEY=your-api-key" >> .env
 echo "HF_TOKEN=your-hf-token" >> .env
 
 # Run import
-python scripts/evaluation_manager.py import-aa \
+uv run scripts/evaluation_manager.py import-aa \
   --creator-slug "anthropic" \
   --model-name "claude-sonnet-4" \
   --repo-id "username/model-name"
@@ -201,7 +207,7 @@ python scripts/evaluation_manager.py import-aa \
 
 **Create Pull Request:**
 ```bash
-python scripts/evaluation_manager.py import-aa \
+uv run scripts/evaluation_manager.py import-aa \
   --creator-slug "anthropic" \
   --model-name "claude-sonnet-4" \
   --repo-id "username/model-name" \
@@ -234,7 +240,7 @@ hf jobs uv run hf-evaluation/scripts/inspect_eval_uv.py \
 
 **Python Helper (optional):**
 ```bash
-python scripts/run_eval_job.py \
+uv run scripts/run_eval_job.py \
   --model "meta-llama/Llama-2-7b-hf" \
   --task "mmlu" \
   --hardware "t4-small"
@@ -261,23 +267,23 @@ lighteval is HuggingFace's evaluation library, supporting Open LLM Leaderboard t
 **Standalone (local GPU):**
 ```bash
 # Run MMLU 5-shot with vLLM
-python scripts/lighteval_vllm_uv.py \
+uv run scripts/lighteval_vllm_uv.py \
   --model meta-llama/Llama-3.2-1B \
   --tasks "leaderboard|mmlu|5"
 
 # Run multiple tasks
-python scripts/lighteval_vllm_uv.py \
+uv run scripts/lighteval_vllm_uv.py \
   --model meta-llama/Llama-3.2-1B \
   --tasks "leaderboard|mmlu|5,leaderboard|gsm8k|5"
 
 # Use accelerate backend instead of vLLM
-python scripts/lighteval_vllm_uv.py \
+uv run scripts/lighteval_vllm_uv.py \
   --model meta-llama/Llama-3.2-1B \
   --tasks "leaderboard|mmlu|5" \
   --backend accelerate
 
 # Chat/instruction-tuned models
-python scripts/lighteval_vllm_uv.py \
+uv run scripts/lighteval_vllm_uv.py \
   --model meta-llama/Llama-3.2-1B-Instruct \
   --tasks "leaderboard|mmlu|5" \
   --use-chat-template
@@ -323,18 +329,18 @@ inspect-ai is the UK AI Safety Institute's evaluation framework.
 **Standalone (local GPU):**
 ```bash
 # Run MMLU with vLLM
-python scripts/inspect_vllm_uv.py \
+uv run scripts/inspect_vllm_uv.py \
   --model meta-llama/Llama-3.2-1B \
   --task mmlu
 
 # Use HuggingFace Transformers backend
-python scripts/inspect_vllm_uv.py \
+uv run scripts/inspect_vllm_uv.py \
   --model meta-llama/Llama-3.2-1B \
   --task mmlu \
   --backend hf
 
 # Multi-GPU with tensor parallelism
-python scripts/inspect_vllm_uv.py \
+uv run scripts/inspect_vllm_uv.py \
   --model meta-llama/Llama-3.2-70B \
   --task mmlu \
   --tensor-parallel-size 4
@@ -364,13 +370,13 @@ The helper script auto-selects hardware and simplifies job submission:
 
 ```bash
 # Auto-detect hardware based on model size
-python scripts/run_vllm_eval_job.py \
+uv run scripts/run_vllm_eval_job.py \
   --model meta-llama/Llama-3.2-1B \
   --task "leaderboard|mmlu|5" \
   --framework lighteval
 
 # Explicit hardware selection
-python scripts/run_vllm_eval_job.py \
+uv run scripts/run_vllm_eval_job.py \
   --model meta-llama/Llama-3.2-70B \
   --task mmlu \
   --framework inspect \
@@ -378,7 +384,7 @@ python scripts/run_vllm_eval_job.py \
   --tensor-parallel-size 4
 
 # Use HF Transformers backend
-python scripts/run_vllm_eval_job.py \
+uv run scripts/run_vllm_eval_job.py \
   --model microsoft/phi-2 \
   --task mmlu \
   --framework inspect \
@@ -451,7 +457,7 @@ hf jobs uv run scripts/inspect_eval_uv.py \
 or use the Python helper:
 
 ```bash
-python scripts/run_eval_job.py \
+uv run scripts/run_eval_job.py \
   --model "model-id" \
   --task "task-name" \
   --hardware "cpu-basic|t4-small|..."
@@ -474,7 +480,7 @@ hf jobs uv run scripts/inspect_vllm_uv.py \
      --task "mmlu"
 
 # Helper script (auto hardware selection)
-python scripts/run_vllm_eval_job.py \
+uv run scripts/run_vllm_eval_job.py \
   --model "model-id" \
   --task "leaderboard|mmlu|5" \
   --framework lighteval

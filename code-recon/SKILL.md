@@ -1,8 +1,3 @@
----
-name: code-recon
-description: Build deep architectural understanding through ultra-granular code analysis. Use when doing security audits, code reviews, or getting oriented in an unfamiliar codebase.
----
-
 # CodeRecon - Deep Architectural Context Building
 
 Build comprehensive architectural understanding through ultra-granular code analysis. Designed for security auditors, code reviewers, and developers who need to rapidly understand unfamiliar codebases before diving deep.

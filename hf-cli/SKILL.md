@@ -1,5 +1,5 @@
 ---
-name: hf-cli
+name: hugging-face-cli
 description: Execute Hugging Face Hub operations using the `hf` CLI. Use when the user needs to download models/datasets/spaces, upload files to Hub repositories, create repos, manage local cache, or run compute jobs on HF infrastructure. Covers authentication, file transfers, repository creation, cache operations, and cloud compute.
 ---
 
@@ -20,6 +20,12 @@ The `hf` CLI provides direct terminal access to the Hugging Face Hub for downloa
 | Delete files | `hf repo-files delete <repo_id> <files>` |
 | List cache | `hf cache ls` |
 | Remove from cache | `hf cache rm <repo_or_revision>` |
+| List models | `hf models ls` |
+| Get model info | `hf models info <model_id>` |
+| List datasets | `hf datasets ls` |
+| Get dataset info | `hf datasets info <dataset_id>` |
+| List spaces | `hf spaces ls` |
+| Get space info | `hf spaces info <space_id>` |
 | List endpoints | `hf endpoints ls` |
 | Run GPU job | `hf jobs run --flavor a10g-small <image> <cmd>` |
 | Environment info | `hf env` |
@@ -87,6 +93,25 @@ hf cache rm model/gpt2           # Remove cached repo
 hf cache rm <revision_hash>      # Remove cached revision
 hf cache prune                   # Remove detached revisions
 hf cache verify gpt2             # Verify checksums from cache
+```
+
+### Browse Hub
+```bash
+# Models
+hf models ls                                        # List top trending models
+hf models ls --search "MiniMax" --author MiniMaxAI  # Search models
+hf models ls --filter "text-generation" --limit 20  # Filter by task
+hf models info MiniMaxAI/MiniMax-M2.1               # Get model info
+
+# Datasets
+hf datasets ls                                      # List top trending datasets
+hf datasets ls --search "finepdfs" --sort downloads # Search datasets
+hf datasets info HuggingFaceFW/finepdfs             # Get dataset info
+
+# Spaces
+hf spaces ls                                        # List top trending spaces
+hf spaces ls --filter "3d" --limit 10               # Filter by 3D modeling spaces
+hf spaces info enzostvs/deepsite                    # Get space info
 ```
 
 ### Jobs (Cloud Compute)

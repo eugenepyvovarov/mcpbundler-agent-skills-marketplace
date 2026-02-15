@@ -9,6 +9,9 @@ Complete reference for all `hf` CLI commands and options.
 - [Repository Management](#repository-management)
 - [Repository Files](#repository-files)
 - [Cache Management](#cache-management)
+- [Datasets](#datasets)
+- [Models](#models)
+- [Spaces](#spaces)
 - [Jobs](#jobs)
 - [Inference Endpoints](#inference-endpoints)
 - [Environment](#environment)
@@ -490,6 +493,152 @@ hf cache verify deepseek-ai/DeepSeek-OCR --local-dir /path/to/repo
 | `--token` | Authentication token |
 
 **Note:** Use either `--cache-dir` or `--local-dir`, not both.
+
+---
+
+## Datasets
+
+Interact with datasets on the Hub.
+
+### hf datasets ls
+List datasets on the Hub.
+
+```bash
+hf datasets ls                                      # List top trending datasets
+hf datasets ls --limit 20                           # List more results
+hf datasets ls --search "finepdfs"                  # Search by name
+hf datasets ls --author HuggingFaceFW               # Filter by author/org
+hf datasets ls --filter "task_categories:text-generation"  # Filter by tags
+hf datasets ls --sort downloads                     # Sort by downloads
+hf datasets ls --expand downloads,likes,tags        # Include extra fields
+```
+
+**Options:**
+| Option | Description |
+|--------|-------------|
+| `--search` | Search query |
+| `--author` | Filter by author or organization |
+| `--filter` | Filter by tags (can be used multiple times) |
+| `--sort` | `created_at`, `downloads`, `last_modified`, `likes`, `trending_score` |
+| `--limit` | Number of results (default: 10) |
+| `--expand` | Comma-separated properties to include |
+| `--token` | Authentication token |
+
+**Expandable properties:** `author`, `cardData`, `citation`, `createdAt`, `description`, `disabled`, `downloads`, `downloadsAllTime`, `gated`, `lastModified`, `likes`, `paperswithcode_id`, `private`, `resourceGroup`, `sha`, `siblings`, `tags`, `trendingScore`, `usedStorage`
+
+### hf datasets info
+Get info about a specific dataset on the Hub.
+
+```bash
+hf datasets info HuggingFaceFW/finepdfs
+hf datasets info HuggingFaceFW/finepdfs --revision main
+hf datasets info HuggingFaceFW/finepdfs --expand downloads,likes,tags
+```
+
+**Options:**
+| Option | Description |
+|--------|-------------|
+| `--revision` | Branch, tag, or commit hash |
+| `--expand` | Comma-separated properties to include |
+| `--token` | Authentication token |
+
+---
+
+## Models
+
+Interact with models on the Hub.
+
+### hf models ls
+List models on the Hub.
+
+```bash
+hf models ls                                        # List top trending models
+hf models ls --limit 20                             # List more results
+hf models ls --search "MiniMax"                     # Search by name
+hf models ls --author MiniMaxAI                     # Filter by author/org
+hf models ls --filter "text-generation"             # Filter by tags
+hf models ls --sort downloads                       # Sort by downloads
+hf models ls --expand downloads,likes,tags          # Include extra fields
+```
+
+**Options:**
+| Option | Description |
+|--------|-------------|
+| `--search` | Search query |
+| `--author` | Filter by author or organization |
+| `--filter` | Filter by tags (can be used multiple times) |
+| `--sort` | `created_at`, `downloads`, `last_modified`, `likes`, `trending_score` |
+| `--limit` | Number of results (default: 10) |
+| `--expand` | Comma-separated properties to include |
+| `--token` | Authentication token |
+
+**Expandable properties:** `author`, `baseModels`, `cardData`, `childrenModelCount`, `config`, `createdAt`, `disabled`, `downloads`, `downloadsAllTime`, `gated`, `gguf`, `inference`, `inferenceProviderMapping`, `lastModified`, `library_name`, `likes`, `mask_token`, `model-index`, `pipeline_tag`, `private`, `resourceGroup`, `safetensors`, `sha`, `siblings`, `spaces`, `tags`, `transformersInfo`, `trendingScore`, `usedStorage`, `widgetData`
+
+### hf models info
+Get info about a specific model on the Hub.
+
+```bash
+hf models info MiniMaxAI/MiniMax-M2.1
+hf models info MiniMaxAI/MiniMax-M2.1 --revision main
+hf models info MiniMaxAI/MiniMax-M2.1 --expand downloads,likes,tags,pipeline_tag
+```
+
+**Options:**
+| Option | Description |
+|--------|-------------|
+| `--revision` | Branch, tag, or commit hash |
+| `--expand` | Comma-separated properties to include |
+| `--token` | Authentication token |
+
+---
+
+## Spaces
+
+Interact with spaces on the Hub.
+
+### hf spaces ls
+List spaces on the Hub.
+
+```bash
+hf spaces ls                                        # List top trending spaces
+hf spaces ls --limit 20                             # List more results
+hf spaces ls --search "TRELLIS.2"                    # Search by name
+hf spaces ls --author microsoft                      # Filter by author/org
+hf spaces ls --filter "3d"                          # Filter by 3D modeling spaces
+hf spaces ls --sort likes                           # Sort by likes
+hf spaces ls --expand likes,tags,sdk                # Include extra fields
+```
+
+**Options:**
+| Option | Description |
+|--------|-------------|
+| `--search` | Search query |
+| `--author` | Filter by author or organization |
+| `--filter` | Filter by tags (can be used multiple times) |
+| `--sort` | `created_at`, `last_modified`, `likes`, `trending_score` |
+| `--limit` | Number of results (default: 10) |
+| `--expand` | Comma-separated properties to include |
+| `--token` | Authentication token |
+
+**Note:** `--sort downloads` is not valid for spaces.
+
+**Expandable properties:** `author`, `cardData`, `createdAt`, `datasets`, `disabled`, `lastModified`, `likes`, `models`, `private`, `resourceGroup`, `runtime`, `sdk`, `sha`, `siblings`, `subdomain`, `tags`, `trendingScore`, `usedStorage`
+
+### hf spaces info
+Get info about a specific space on the Hub.
+
+```bash
+hf spaces info enzostvs/deepsite
+hf spaces info enzostvs/deepsite --revision main
+hf spaces info enzostvs/deepsite --expand likes,tags,sdk,runtime
+```
+
+**Options:**
+| Option | Description |
+|--------|-------------|
+| `--revision` | Branch, tag, or commit hash |
+| `--expand` | Comma-separated properties to include |
+| `--token` | Authentication token |
 
 ---
 

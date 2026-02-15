@@ -41,7 +41,7 @@
       ],
       "category": "Productivity",
       "strict": false,
-      "version": "612fbcdd01be93b7e3432f04fc8a864e2c3b8a88"
+      "version": "7f2ee614b6d65af34bd6b689f48f79f742a9d43c"
     },
     {
       "name": "swiftui-ui-patterns",
@@ -59,7 +59,7 @@
       ],
       "category": "Swift Development",
       "strict": false,
-      "version": "b6d69af07379580cb226a57c8bedc312d74c303c"
+      "version": "4c59f147533f42c2a1d54c1d2c5c92494602a4e3"
     },
     {
       "name": "swiftui-view-refactor",
@@ -77,7 +77,7 @@
       ],
       "category": "Swift Development",
       "strict": false,
-      "version": "106e533451867ab97ef96d27424e3dac34b079e6"
+      "version": "0ce51f2e0db5f240a3067a37bbfb86dae6f45bb7"
     },
     {
       "name": "swift-concurrency-expert",
@@ -105,7 +105,7 @@
         "name": "Netresearch"
       },
       "repository": "https://github.com/netresearch/enterprise-readiness-skill",
-      "homepage": "https://github.com/netresearch/enterprise-readiness-skill/tree/main",
+      "homepage": "https://github.com/netresearch/enterprise-readiness-skill/tree/main/skills/enterprise-readiness",
       "keywords": [
         "enterprise",
         "security",
@@ -113,7 +113,7 @@
       ],
       "category": "Development",
       "strict": false,
-      "version": "3cc906f09fc313cabcf0e4c1b1b09449989a5ea6"
+      "version": "e1f4249bfeb2b7e57b49f1d1dcf34c0b5de41f43"
     },
     {
       "name": "git-workflow-skill",
@@ -123,7 +123,7 @@
         "name": "Netresearch"
       },
       "repository": "https://github.com/netresearch/git-workflow-skill",
-      "homepage": "https://github.com/netresearch/git-workflow-skill/tree/main",
+      "homepage": "https://github.com/netresearch/git-workflow-skill/tree/main/skills/git-workflow",
       "keywords": [
         "git",
         "workflow",
@@ -131,7 +131,7 @@
       ],
       "category": "Development",
       "strict": false,
-      "version": "e15e29634efb3433c8bf2d15a104d2581526e97d"
+      "version": "91223ce3dd270061ce0420e42dbd7c3f851da5aa"
     },
     {
       "name": "model-trainer",
@@ -141,7 +141,7 @@
         "name": "Hugging Face"
       },
       "repository": "https://github.com/huggingface/skills",
-      "homepage": "https://github.com/huggingface/skills/tree/main/hf-trainer/skills/model-trainer",
+      "homepage": "https://github.com/huggingface/skills/tree/main/skills/hugging-face-model-trainer",
       "keywords": [
         "model-training",
         "trl",
@@ -149,7 +149,7 @@
       ],
       "category": "AI/Machine Learning",
       "strict": false,
-      "version": "497d0d8a00626cb521bf6a0ccfa3c28db6518cda"
+      "version": "55b11ff1d7a35e33286ce6bc4e3375a9b8756a45"
     },
     {
       "name": "hf-cli",
@@ -159,7 +159,7 @@
         "name": "Hugging Face"
       },
       "repository": "https://github.com/huggingface/skills",
-      "homepage": "https://github.com/huggingface/skills/tree/main/hf-cli",
+      "homepage": "https://github.com/huggingface/skills/tree/main/skills/hugging-face-cli",
       "keywords": [
         "hugging-face",
         "cli",
@@ -167,7 +167,7 @@
       ],
       "category": "AI/Machine Learning",
       "strict": false,
-      "version": "919ba0801f1a923daa672aaa3d2a395019b3e7aa"
+      "version": "351508f54d19d26b43851fd081a5697b45f4b19a"
     },
     {
       "name": "hugging-face-evaluation-manager",
@@ -177,7 +177,7 @@
         "name": "Hugging Face"
       },
       "repository": "https://github.com/huggingface/skills",
-      "homepage": "https://github.com/huggingface/skills/tree/main/hf-evaluation/skills/hugging-face-evaluation-manager",
+      "homepage": "https://github.com/huggingface/skills/tree/main/skills/hugging-face-evaluation",
       "keywords": [
         "evaluation",
         "model-cards",
@@ -185,7 +185,7 @@
       ],
       "category": "AI/Machine Learning",
       "strict": false,
-      "version": "242d630ef8c0169a935326c6631553ceb0dc75ee"
+      "version": "b417fadb46e3010bb12841e3372f70fb44f1adf7"
     },
     {
       "name": "hugging-face-paper-publisher",
@@ -195,7 +195,7 @@
         "name": "Hugging Face"
       },
       "repository": "https://github.com/huggingface/skills",
-      "homepage": "https://github.com/huggingface/skills/tree/main/hf-papers/skills/hugging-face-paper-publisher",
+      "homepage": "https://github.com/huggingface/skills/tree/main/skills/hugging-face-paper-publisher",
       "keywords": [
         "papers",
         "research",
@@ -203,7 +203,7 @@
       ],
       "category": "AI/Machine Learning",
       "strict": false,
-      "version": "422ae063f2c0bde17c84272e39af5653aea6805e"
+      "version": "b417fadb46e3010bb12841e3372f70fb44f1adf7"
     },
     {
       "name": "hf-tool-builder",
@@ -213,7 +213,7 @@
         "name": "Hugging Face"
       },
       "repository": "https://github.com/huggingface/skills",
-      "homepage": "https://github.com/huggingface/skills/tree/main/hf-tool-builder/skills/hf-tool-builder",
+      "homepage": "https://github.com/huggingface/skills/tree/main/skills/hugging-face-tool-builder",
       "keywords": [
         "hugging-face-api",
         "tools",
@@ -221,7 +221,7 @@
       ],
       "category": "AI/Machine Learning",
       "strict": false,
-      "version": "f44edd4bd5272d4ee92150292204e0759d6d06e5"
+      "version": "a25b8e5be09fe00671dd05deb5fdc29ff4dbe1a5"
     },
     {
       "name": "spec-to-plan",
@@ -247,7 +247,7 @@
         "name": "eugenepyvovarov"
       },
       "repository": "https://github.com/eugenepyvovarov/skill-boilerplate-skill",
-      "homepage": "https://github.com/eugenepyvovarov/skill-boilerplate-skill",
+      "homepage": "https://github.com/eugenepyvovarov/skill-boilerplate-skill/tree/main",
       "keywords": [
         "boilerplate",
         "skill-setup",
@@ -273,7 +273,7 @@
       ],
       "category": "Productivity",
       "strict": false,
-      "version": "361d6d721ef71768a3d8141f4d37bc0a54eed83b"
+      "version": "59ad0f6e9de96cf0e6071aa3a3e1e505e57d76e7"
     },
     {
       "name": "openai-knowledge",
@@ -283,7 +283,7 @@
         "name": "OpenAI"
       },
       "repository": "https://github.com/openai/openai-agents-python",
-      "homepage": "https://github.com/openai/openai-agents-python/tree/main/.codex/skills/openai-knowledge",
+      "homepage": "https://github.com/openai/openai-agents-python/tree/main/.agents/skills/openai-knowledge",
       "keywords": [
         "openai",
         "api",
@@ -291,7 +291,7 @@
       ],
       "category": "Development",
       "strict": false,
-      "version": "19b7c0bbab31ed7a5c3c0c48620ce88a00b2acc6"
+      "version": "3391ec656a0c8ade90ca1134308640dc1074e1de"
     },
     {
       "name": "wordpress-plugin-core",
@@ -309,7 +309,7 @@
       ],
       "category": "Development",
       "strict": false,
-      "version": "bd9ffe5461f7eb5c7316dc906946524a49caa621"
+      "version": "c0cdee68cf192c611ddc01eb7a1a9e1f89595080"
     },
     {
       "name": "things3-agent-skill",
@@ -345,7 +345,7 @@
       ],
       "category": "Development",
       "strict": false,
-      "version": "5944930eaf467d2d12c23bec8d096f57e6e379aa"
+      "version": "0253fb3d21c3f0d7d2b7125560f2f7b0da40d7db"
     },
     {
       "name": "wp-abilities-api",
@@ -687,7 +687,7 @@
       ],
       "category": "Development",
       "strict": false,
-      "version": "03a53c9f36a3b946a062b7115bccfda03b8f202a"
+      "version": "697b788af0fd108ade4c46eb2015aaed757bf687"
     },
     {
       "name": "remotion",
@@ -705,7 +705,7 @@
       ],
       "category": "Development",
       "strict": false,
-      "version": "9550e1643dd451d3f8c131579d8ae827b2ce3eea"
+      "version": "cd0aa6c1409b0d4227798b38667727965ef71eee"
     },
     {
       "name": "code-recon",
@@ -723,7 +723,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "a10d9d6b60b2be2291bdc9c50ecc23a43251cf42"
     },
     {
       "name": "dflow",
@@ -741,7 +741,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "920c63e4304587f22ced024157cd83c76b084f55"
     },
     {
       "name": "drift-protocol",
@@ -759,7 +759,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "a10d9d6b60b2be2291bdc9c50ecc23a43251cf42"
     },
     {
       "name": "example-skill",
@@ -777,7 +777,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "735c080e5ef9a70616b8ccea569968c7439ed8db"
     },
     {
       "name": "helius",
@@ -795,7 +795,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "35806dc0cd12cf4ef8758a7daf031aa1e7aa3287"
     },
     {
       "name": "kamino",
@@ -813,7 +813,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "920c63e4304587f22ced024157cd83c76b084f55"
     },
     {
       "name": "magicblock",
@@ -831,7 +831,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "a10d9d6b60b2be2291bdc9c50ecc23a43251cf42"
     },
     {
       "name": "meteora",
@@ -849,7 +849,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "920c63e4304587f22ced024157cd83c76b084f55"
     },
     {
       "name": "pinocchio-development",
@@ -867,7 +867,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "81c8d8ebf1c87a0a64a439e811fb8e0abcbc8d66"
     },
     {
       "name": "raydium",
@@ -885,7 +885,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "9f3dc5648130b730720fd797978d8630c1c393fb"
     },
     {
       "name": "solana-agent-kit",
@@ -903,7 +903,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "81c8d8ebf1c87a0a64a439e811fb8e0abcbc8d66"
     },
     {
       "name": "solana-kit",
@@ -921,7 +921,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "81c8d8ebf1c87a0a64a439e811fb8e0abcbc8d66"
     },
     {
       "name": "solana-kit-migration",
@@ -939,7 +939,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "81c8d8ebf1c87a0a64a439e811fb8e0abcbc8d66"
     },
     {
       "name": "vulnhunter",
@@ -957,7 +957,7 @@
       ],
       "category": "Solana development",
       "strict": false,
-      "version": "21695b7f5b3a74f899122d85cfbbe3e56f229380"
+      "version": "a10d9d6b60b2be2291bdc9c50ecc23a43251cf42"
     },
     {
       "name": "epub-translate",
@@ -993,7 +993,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "analytics-tracking",
@@ -1011,7 +1011,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "competitor-alternatives",
@@ -1029,7 +1029,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "ed860967303041400cedf5763d20d0e6255a9274"
     },
     {
       "name": "copy-editing",
@@ -1047,12 +1047,12 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "copywriting",
       "source": "./copywriting",
-      "description": "When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says \"write copy for,\" \"improve this copy,\" \"rewrite this page,\" \"marketing copy,\" \"headline help,\" \"CTA copy.\" For email copy, see email-sequence. For popup copy, see popup-cro.",
+      "description": "When the user wants to write, rewrite, or improve marketing copy for any page \u2014 including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says \"write copy for,\" \"improve this copy,\" \"rewrite this page,\" \"marketing copy,\" \"headline help,\" \"CTA copy.\" For email copy, see email-sequence. For popup copy, see popup-cro.",
       "author": {
         "name": "coreyhaines31"
       },
@@ -1065,7 +1065,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "email-sequence",
@@ -1083,12 +1083,12 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "form-cro",
       "source": "./form-cro",
-      "description": "When the user wants to optimize any form that is NOT signup/registration — including lead capture forms, contact forms, demo request forms, application forms, survey forms, or checkout forms. Also use when the user mentions \"form optimization,\" \"lead form conversions,\" \"form friction,\" \"form fields,\" \"form completion rate,\" or \"contact form.\" For signup/registration forms, see signup-flow-cro. For popups containing forms, see popup-cro.",
+      "description": "When the user wants to optimize any form that is NOT signup/registration \u2014 including lead capture forms, contact forms, demo request forms, application forms, survey forms, or checkout forms. Also use when the user mentions \"form optimization,\" \"lead form conversions,\" \"form friction,\" \"form fields,\" \"form completion rate,\" or \"contact form.\" For signup/registration forms, see signup-flow-cro. For popups containing forms, see popup-cro.",
       "author": {
         "name": "coreyhaines31"
       },
@@ -1101,12 +1101,12 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "free-tool-strategy",
       "source": "./free-tool-strategy",
-      "description": "When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or brand awareness. Also use when the user mentions \"engineering as marketing,\" \"free tool,\" \"marketing tool,\" \"calculator,\" \"generator,\" \"interactive tool,\" \"lead gen tool,\" \"build a tool for leads,\" or \"free resource.\" This skill bridges engineering and marketing — useful for founders and technical marketers.",
+      "description": "When the user wants to plan, evaluate, or build a free tool for marketing purposes \u2014 lead generation, SEO value, or brand awareness. Also use when the user mentions \"engineering as marketing,\" \"free tool,\" \"marketing tool,\" \"calculator,\" \"generator,\" \"interactive tool,\" \"lead gen tool,\" \"build a tool for leads,\" or \"free resource.\" This skill bridges engineering and marketing \u2014 useful for founders and technical marketers.",
       "author": {
         "name": "coreyhaines31"
       },
@@ -1119,7 +1119,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "launch-strategy",
@@ -1137,7 +1137,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "marketing-ideas",
@@ -1155,7 +1155,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "marketing-psychology",
@@ -1173,7 +1173,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "onboarding-cro",
@@ -1191,12 +1191,12 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "page-cro",
       "source": "./page-cro",
-      "description": "When the user wants to optimize, improve, or increase conversions on any marketing page — including homepage, landing pages, pricing pages, feature pages, or blog posts. Also use when the user says \"CRO,\" \"conversion rate optimization,\" \"this page isn't converting,\" \"improve conversions,\" or \"why isn't this page working.\" For signup/registration flows, see signup-flow-cro. For post-signup activation, see onboarding-cro. For forms outside of signup, see form-cro. For popups/modals, see popup-cro.",
+      "description": "When the user wants to optimize, improve, or increase conversions on any marketing page \u2014 including homepage, landing pages, pricing pages, feature pages, or blog posts. Also use when the user says \"CRO,\" \"conversion rate optimization,\" \"this page isn't converting,\" \"improve conversions,\" or \"why isn't this page working.\" For signup/registration flows, see signup-flow-cro. For post-signup activation, see onboarding-cro. For forms outside of signup, see form-cro. For popups/modals, see popup-cro.",
       "author": {
         "name": "coreyhaines31"
       },
@@ -1209,7 +1209,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "paid-ads",
@@ -1227,12 +1227,12 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "paywall-upgrade-cro",
       "source": "./paywall-upgrade-cro",
-      "description": "When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use when the user mentions \"paywall,\" \"upgrade screen,\" \"upgrade modal,\" \"upsell,\" \"feature gate,\" \"convert free to paid,\" \"freemium conversion,\" \"trial expiration screen,\" \"limit reached screen,\" \"plan upgrade prompt,\" or \"in-app pricing.\" Distinct from public pricing pages (see page-cro) — this skill focuses on in-product upgrade moments where the user has already experienced value.",
+      "description": "When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use when the user mentions \"paywall,\" \"upgrade screen,\" \"upgrade modal,\" \"upsell,\" \"feature gate,\" \"convert free to paid,\" \"freemium conversion,\" \"trial expiration screen,\" \"limit reached screen,\" \"plan upgrade prompt,\" or \"in-app pricing.\" Distinct from public pricing pages (see page-cro) \u2014 this skill focuses on in-product upgrade moments where the user has already experienced value.",
       "author": {
         "name": "coreyhaines31"
       },
@@ -1245,7 +1245,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "popup-cro",
@@ -1263,7 +1263,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "pricing-strategy",
@@ -1281,7 +1281,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "programmatic-seo",
@@ -1299,7 +1299,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "referral-program",
@@ -1317,7 +1317,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "schema-markup",
@@ -1335,7 +1335,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "seo-audit",
@@ -1353,7 +1353,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "signup-flow-cro",
@@ -1371,7 +1371,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "3617bdc883230c2eec6cd77721987f71650902e5"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "social-content",
@@ -1389,7 +1389,7 @@
       ],
       "category": "Marketing",
       "strict": false,
-      "version": "df4c6bc132fe77294b24f254d627206edf7966ec"
+      "version": "1999e8f8b39259faa05b3ded6f0b1e3218262dbe"
     },
     {
       "name": "browser-use",
@@ -1407,12 +1407,12 @@
       ],
       "category": "Development",
       "strict": false,
-      "version": "b6bdc17bcb3e180c67efc8016b7d01df66c0d5fe"
+      "version": "ada8b77d0b407c52fd6dfe0d83f8a303d0aa4e43"
     },
     {
       "name": "writing-clearly-and-concisely",
       "source": "./writing-clearly-and-concisely",
-      "description": "Use when writing prose humans will read—documentation, commit messages, error messages, explanations, reports, or UI text. Applies Strunk's timeless rules for clearer, stronger, more professional writing.",
+      "description": "Use when writing prose humans will read\u2014documentation, commit messages, error messages, explanations, reports, or UI text. Applies Strunk's timeless rules for clearer, stronger, more professional writing.",
       "author": {
         "name": "softaworks"
       },
@@ -1425,7 +1425,7 @@
       ],
       "category": "Productivity",
       "strict": false,
-      "version": "011baf4acea99174acb5486a9b662a7e084be63b"
+      "version": "32d7e8aad4f452b9865f5d1b2443d14038fdb2a2"
     },
     {
       "name": "c4-architecture",
@@ -1461,12 +1461,12 @@
       ],
       "category": "Development",
       "strict": false,
-      "version": "06825f04669d4364a16abc267650c86cf153d349"
+      "version": "025dcd003b457880d4b541ad5c8b8d29bbb2e6a9"
     },
     {
       "name": "crafting-effective-readmes",
       "source": "./crafting-effective-readmes",
-      "description": "Use when writing or improving README files. Not all READMEs are the same — provides templates and guidance matched to your audience and project type.",
+      "description": "Use when writing or improving README files. Not all READMEs are the same \u2014 provides templates and guidance matched to your audience and project type.",
       "author": {
         "name": "softaworks"
       },
@@ -1479,7 +1479,7 @@
       ],
       "category": "Productivity",
       "strict": false,
-      "version": "011baf4acea99174acb5486a9b662a7e084be63b"
+      "version": "efbd228db868b0b55f91d58a97971f3339cfe155"
     }
   ]
 }

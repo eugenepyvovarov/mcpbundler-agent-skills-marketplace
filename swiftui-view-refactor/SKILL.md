@@ -97,6 +97,38 @@ private struct HeaderSection: View {
 }
 ```
 
+### 3b) Keep a stable view tree (avoid top-level conditional view swapping)
+- Avoid patterns where a computed view (or `body`) returns completely different root branches using `if/else`.
+- Prefer a single stable base view, and place conditions inside sections/modifiers (`overlay`, `opacity`, `disabled`, `toolbar`, row content, etc.).
+- Root-level branch swapping can cause identity churn, broader invalidation, and extra recomputation in SwiftUI.
+
+Prefer:
+
+```swift
+var body: some View {
+    List {
+        documentsListContent
+    }
+    .toolbar {
+        if canEdit {
+            editToolbar
+        }
+    }
+}
+```
+
+Avoid:
+
+```swift
+var documentsListView: some View {
+    if canEdit {
+        editableDocumentsList
+    } else {
+        readOnlyDocumentsList
+    }
+}
+```
+
 ### 4) View model handling (only if already present)
 - Do not introduce a view model unless the request or existing code clearly calls for one.
 - If a view model exists, make it non-optional when possible.
@@ -121,12 +153,17 @@ init(dependency: Dependency) {
 
 1) Reorder the view to match the ordering rules.
 2) Favor MV: move lightweight orchestration into the view using `@State`, `@Environment`, `@Query`, `task`, and `onChange`.
-3) If a view model exists, replace optional view models with a non-optional `@State` view model initialized in `init` by passing dependencies from the view.
-4) Confirm Observation usage: `@State` for root `@Observable` view models, no redundant wrappers.
-5) Keep behavior intact: do not change layout or business logic unless requested.
+3) Ensure stable view structure: avoid top-level `if`-based branch swapping; move conditions to localized sections/modifiers.
+4) If a view model exists, replace optional view models with a non-optional `@State` view model initialized in `init` by passing dependencies from the view.
+5) Confirm Observation usage: `@State` for root `@Observable` view models, no redundant wrappers.
+6) Keep behavior intact: do not change layout or business logic unless requested.
 
 ## Notes
 
 - Prefer small, explicit helpers over large conditional blocks.
 - Keep computed view builders below `body` and non-view computed vars above `init`.
 - For MV-first guidance and rationale, see `references/mv-patterns.md`.
+
+## Large-view handling
+
+- When a SwiftUI view file exceeds ~300 lines, split it using extensions to group related helpers. Move async functions and helper functions into dedicated `private` extensions, separated with `// MARK: -` comments that describe their purpose (e.g., `// MARK: - Actions`, `// MARK: - Subviews`, `// MARK: - Helpers`). Keep the main `struct` focused on stored properties, init, and `body`, with view-building computed vars also grouped via marks when the file is long.

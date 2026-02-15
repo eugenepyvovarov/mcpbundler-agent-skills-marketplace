@@ -1,8 +1,3 @@
----
-name: magicblock
-description: Comprehensive guide for building high-performance Solana apps with MagicBlock Ephemeral Rollups. Use when you need sub-10ms latency, gasless transactions, or rollup architecture guidance.
----
-
 # MagicBlock Ephemeral Rollups Guide
 
 A comprehensive guide for building high-performance Solana applications with MagicBlock Ephemeral Rollups - enabling sub-10ms latency and gasless transactions.

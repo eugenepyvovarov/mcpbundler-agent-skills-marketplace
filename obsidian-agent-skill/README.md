@@ -1,4 +1,4 @@
-# Obsidian Vault Manager (Codex skill)
+# Obsidian Vault Manager (Agent skill)
 
 Manage local Obsidian vaults and markdown notes. Use this skill when Codex needs to connect to local Obsidian vaults, register vault paths, or create/edit/refactor/search notes, frontmatter, links, tags, and attachments within a vault.
 

@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "pyyaml",
+# ]
+# ///
 """
 Test script for evaluation extraction functionality.
 
 This script demonstrates the table extraction capabilities without
 requiring HF tokens or making actual API calls.
+
+Note: This script imports from evaluation_manager.py (same directory).
+Run from the scripts/ directory: cd scripts && uv run test_extraction.py
 """
 
 import yaml

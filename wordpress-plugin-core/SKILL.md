@@ -1,16 +1,16 @@
 ---
 name: wordpress-plugin-core
 description: |
-  Build secure WordPress plugins with hooks, database interactions, Settings API, custom post types, and REST API. Covers Simple, OOP, and PSR-4 architecture patterns plus the Security Trinity.
+  Build secure WordPress plugins with hooks, database interactions, Settings API, custom post types, and REST API. Covers Simple, OOP, and PSR-4 architecture patterns plus the Security Trinity. Includes WordPress 6.7-6.9 breaking changes.
 
-  Use when creating plugins or troubleshooting SQL injection, XSS, CSRF vulnerabilities, or plugin activation errors.
+  Use when creating plugins or troubleshooting SQL injection, XSS, CSRF, REST API vulnerabilities, wpdb::prepare errors, nonce edge cases, or WordPress 6.8+ bcrypt migration.
 user-invocable: true
 ---
 
 # WordPress Plugin Development (Core)
 
-**Last Updated**: 2026-01-09
-**Latest Versions**: WordPress 6.8+, PHP 8.0+ recommended
+**Last Updated**: 2026-01-21
+**Latest Versions**: WordPress 6.9+ (Dec 2, 2025), PHP 8.0+ recommended, PHP 8.5 compatible
 **Dependencies**: None (WordPress 5.9+, PHP 7.4+ minimum)
 
 ---
@@ -158,7 +158,7 @@ $wpdb->get_results( $wpdb->prepare( "... WHERE title LIKE %s", $search ) );
 
 ## Known Issues Prevention
 
-This skill prevents **20** documented issues:
+This skill prevents **29** documented issues:
 
 ### Issue #1: SQL Injection
 **Error**: Database compromised via unescaped user input
@@ -258,13 +258,14 @@ class MyPL_Settings {}
 add_option( 'mypl_api_key', $value );
 ```
 
-### Issue #7: Rewrite Rules Not Flushed
-**Error**: Custom post types return 404 errors
-**Source**: WordPress Plugin Handbook
-**Why It Happens**: Forgot to flush rewrite rules after registering CPT
-**Prevention**: Flush on activation, clear on deactivation
+### Issue #7: Rewrite Rules Not Flushed (and Performance)
+**Error**: Custom post types return 404 errors, or database overload from repeated flushing
+**Source**: [WordPress Plugin Handbook](https://developer.wordpress.org/plugins/), [Permalink Manager Pro](https://permalinkmanager.pro/blog/flush-rewrite-rules/)
+**Why It Happens**: Forgot to flush rewrite rules after registering CPT, OR calling flush on every page load
+**Prevention**: Flush ONLY on activation/deactivation, NEVER on every page load
 
 ```php
+// ✅ CORRECT - Only flush on activation
 function mypl_activate() {
     mypl_register_cpt();
     flush_rewrite_rules();
@@ -275,7 +276,19 @@ function mypl_deactivate() {
     flush_rewrite_rules();
 }
 register_deactivation_hook( __FILE__, 'mypl_deactivate' );
+
+// ❌ WRONG - Causes database overload on EVERY page load
+add_action( 'init', 'mypl_register_cpt' );
+add_action( 'init', 'flush_rewrite_rules' );  // BAD! Performance killer!
+
+// ❌ WRONG - In functions.php
+function mypl_register_cpt() {
+    register_post_type( 'book', ... );
+    flush_rewrite_rules();  // BAD! Runs every time
+}
 ```
+
+**User-Facing Fix**: If CPT shows 404, manually flush by going to Settings → Permalinks → Save Changes.
 
 ### Issue #8: Transients Not Cleaned
 **Error**: Database accumulates expired transients
@@ -359,25 +372,45 @@ $name = isset( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '';
 ```
 
 ### Issue #13: Missing Permission Callback in REST API
-**Error**: Endpoints accessible to everyone
-**Source**: WordPress REST API Handbook
-**Why It Happens**: No `permission_callback` specified
-**Prevention**: Always add permission_callback
+**Error**: Endpoints accessible to everyone, allowing unauthorized access or privilege escalation
+**Source**: [WordPress REST API Handbook](https://developer.wordpress.org/rest-api/), [Patchstack CVE Database](https://patchstack.com/articles/critical-suretriggers-plugin-vulnerability-exploited-within-4-hours/)
+**Why It Happens**: No `permission_callback` specified, or missing `show_in_index => false` for sensitive endpoints
+**Prevention**: Always add permission_callback AND hide sensitive endpoints from REST index
+
+**Real 2025-2026 Vulnerabilities**:
+- **All in One SEO (3M+ sites)**: Missing permission check allowed contributor-level users to view global AI access token
+- **AI Engine Plugin (CVE-2025-11749, CVSS 9.8 Critical)**: Failed to set `show_in_index => false`, exposed bearer token in /wp-json/ index, full admin privileges granted to unauthenticated attackers
+- **SureTriggers**: Insufficient authorization checks exploited within 4 hours of disclosure
+- **Worker for Elementor (CVE-2025-66144)**: Subscriber-level privileges could invoke restricted features
 
 ```php
-// VULNERABLE
+// ❌ VULNERABLE - Missing permission_callback (WordPress 5.5+ requires it!)
 register_rest_route( 'myplugin/v1', '/data', array(
+    'methods'  => 'GET',
     'callback' => 'my_callback',
 ) );
 
-// SECURE
+// ✅ SECURE - Basic protection
 register_rest_route( 'myplugin/v1', '/data', array(
+    'methods'             => 'GET',
     'callback'            => 'my_callback',
     'permission_callback' => function() {
         return current_user_can( 'edit_posts' );
     },
 ) );
+
+// ✅ SECURE - Hide sensitive endpoints from REST index
+register_rest_route( 'myplugin/v1', '/admin', array(
+    'methods'             => 'POST',
+    'callback'            => 'my_admin_callback',
+    'permission_callback' => function() {
+        return current_user_can( 'manage_options' );
+    },
+    'show_in_index'       => false,  // Don't expose in /wp-json/
+) );
 ```
+
+**2025-2026 Statistics**: 64,782 total vulnerabilities tracked, 333 new in one week, 236 remained unpatched. REST API auth issues represent significant percentage.
 
 ### Issue #14: Uninstall Hook Registered Repeatedly
 **Error**: Option written on every page load
@@ -497,6 +530,290 @@ add_action( 'rest_api_init', function() {
 } );
 ```
 
+### Issue #21: Missing show_in_rest for Block Editor
+**Error**: Custom post types show classic editor instead of Gutenberg block editor
+**Source**: [WordPress VIP Documentation](https://docs.wpvip.com/wordpress-on-vip/block-editor/), [GitHub Issue #7595](https://github.com/WordPress/gutenberg/issues/7595)
+**Why It Happens**: Forgot to set `show_in_rest => true` when registering custom post type
+**Prevention**: Always include show_in_rest for CPTs that need block editor
+
+```php
+// ❌ WRONG - Block editor won't work
+register_post_type( 'book', array(
+    'public' => true,
+    'supports' => array('editor'),
+    // Missing show_in_rest!
+) );
+
+// ✅ CORRECT
+register_post_type( 'book', array(
+    'public' => true,
+    'show_in_rest' => true,  // Required for block editor
+    'supports' => array('editor'),
+) );
+```
+
+**Critical Rule**: Only post types registered with `'show_in_rest' => true` are compatible with the block editor. The block editor is dependent on the WordPress REST API. For post types that are incompatible with the block editor—or have `show_in_rest => false`—the classic editor will load instead.
+
+### Issue #22: wpdb::prepare() Table Name Escaping
+**Error**: SQL syntax error from quoted table names, or hardcoded prefix breaks on different installations
+**Source**: [WordPress Coding Standards Issue #2442](https://github.com/WordPress/WordPress-Coding-Standards/issues/2442)
+**Why It Happens**: Using table names as placeholders adds quotes around the table name
+**Prevention**: Table names must NOT be in prepare() placeholders
+
+```php
+// ❌ WRONG - Adds quotes around table name
+$table = $wpdb->prefix . 'my_table';
+$wpdb->get_results( $wpdb->prepare(
+    "SELECT * FROM %s WHERE id = %d",
+    $table, $id
+) );
+// Result: SELECT * FROM 'wp_my_table' WHERE id = 1
+// FAILS - table name is quoted
+
+// ❌ WRONG - Hardcoded prefix
+$wpdb->get_results( $wpdb->prepare(
+    "SELECT * FROM wp_my_table WHERE id = %d",
+    $id
+) );
+// FAILS if user changed table prefix
+
+// ✅ CORRECT - Table name NOT in prepare()
+$table = $wpdb->prefix . 'my_table';
+$wpdb->get_results( $wpdb->prepare(
+    "SELECT * FROM {$table} WHERE id = %d",
+    $id
+) );
+
+// ✅ CORRECT - Using wpdb->prefix for built-in tables
+$wpdb->get_results( $wpdb->prepare(
+    "SELECT * FROM {$wpdb->posts} WHERE ID = %d",
+    $id
+) );
+```
+
+### Issue #23: Nonce Verification Edge Cases
+**Error**: Confusing user experience from nonce failures, or false sense of security
+**Source**: [MalCare: wp_verify_nonce()](https://www.malcare.com/blog/wp_verify_nonce/), [Pressidium: Understanding Nonces](https://pressidium.com/blog/nonces-in-wordpress-all-you-need-to-know/)
+**Why It Happens**: Misunderstanding nonce behavior and limitations
+**Prevention**: Understand nonce edge cases and always combine with capability checks
+
+**Edge Cases**:
+
+1. **Time-Based Return Values**:
+```php
+$result = wp_verify_nonce( $nonce, 'action' );
+// Returns 1: Valid, generated 0-12 hours ago
+// Returns 2: Valid, generated 12-24 hours ago
+// Returns false: Invalid or expired
+```
+
+2. **Nonce Reusability**: WordPress doesn't track if a nonce has been used. They can be used multiple times within the 12-24 hour window.
+
+3. **Session Invalidation**: A nonce is only valid when tied to a valid session. If a user logs out, all their nonces become invalid, causing confusing UX if they had a form open.
+
+4. **Caching Problems**: Cache issues can cause mismatches when caching plugins serve an older nonce.
+
+5. **NOT a Substitute for Authorization**:
+```php
+// ❌ INSUFFICIENT - Only checks origin, not permission
+if ( wp_verify_nonce( $_POST['nonce'], 'delete_user' ) ) {
+    delete_user( $_POST['user_id'] );
+}
+
+// ✅ CORRECT - Combine with capability check
+if ( wp_verify_nonce( $_POST['nonce'], 'delete_user' ) &&
+     current_user_can( 'delete_users' ) ) {
+    delete_user( absint( $_POST['user_id'] ) );
+}
+```
+
+**Key Principle (2025)**: Nonces should never be relied on for authentication or authorization. Always assume nonces can be compromised. Protect your functions using current_user_can().
+
+### Issue #24: Hook Priority and Argument Count
+**Error**: Hook callback doesn't receive expected arguments, or runs in wrong order
+**Source**: [Kinsta: WordPress Hooks Bootcamp](https://kinsta.com/blog/wordpress-hooks/)
+**Why It Happens**: Default is only 1 argument, priority defaults to 10
+**Prevention**: Specify argument count and priority explicitly when needed
+
+```php
+// ❌ WRONG - Only receives $post_id
+add_action( 'save_post', 'my_save_function' );
+function my_save_function( $post_id, $post, $update ) {
+    // $post and $update are NULL!
+}
+
+// ✅ CORRECT - Specify argument count
+add_action( 'save_post', 'my_save_function', 10, 3 );
+function my_save_function( $post_id, $post, $update ) {
+    // Now all 3 arguments are available
+}
+
+// Priority matters (lower number = runs earlier)
+add_action( 'init', 'first_function', 5 );   // Runs first
+add_action( 'init', 'second_function', 10 );  // Default priority
+add_action( 'init', 'third_function', 15 );   // Runs last
+```
+
+**Best Practices**:
+- Always prefix custom hook names to avoid collisions: `do_action( 'mypl_data_processed' )` not `do_action( 'data_processed' )`
+- Filters must RETURN modified data, not echo it
+- Hook placement affects backwards compatibility - choose carefully
+
+### Issue #25: Custom Post Type URL Conflicts
+**Error**: Individual CPT posts return 404 errors despite permalinks flushed
+**Source**: [Permalink Manager Pro: URL Conflicts](https://permalinkmanager.pro/blog/wordpress-url-conflicts/)
+**Why It Happens**: CPT slug matches a page slug, creating URL conflict
+**Prevention**: Use different slug for CPT or rename the page
+
+```php
+// ❌ CONFLICT - Page and CPT use same slug
+// Page URL: example.com/portfolio/
+register_post_type( 'portfolio', array(
+    'rewrite' => array( 'slug' => 'portfolio' ),
+) );
+// Individual posts 404: example.com/portfolio/my-project/
+
+// ✅ SOLUTION 1 - Use different slug for CPT
+register_post_type( 'portfolio', array(
+    'rewrite' => array( 'slug' => 'projects' ),
+) );
+// Posts: example.com/projects/my-project/
+// Page: example.com/portfolio/
+
+// ✅ SOLUTION 2 - Use hierarchical slug
+register_post_type( 'portfolio', array(
+    'rewrite' => array( 'slug' => 'work/portfolio' ),
+) );
+// Posts: example.com/work/portfolio/my-project/
+
+// ✅ SOLUTION 3 - Rename the page slug
+// Change page from /portfolio/ to /our-portfolio/
+```
+
+### Issue #26: WordPress 6.8 bcrypt Password Hashing Migration
+**Error**: Custom password hash handling breaks after WordPress 6.8 upgrade
+**Source**: [WordPress Core Make](https://make.wordpress.org/core/2025/02/17/wordpress-6-8-will-use-bcrypt-for-password-hashing/), [GitHub Issue #21022](https://core.trac.wordpress.org/ticket/21022)
+**Why It Happens**: WordPress 6.8+ switched from phpass to bcrypt password hashing
+**Prevention**: Use WordPress password functions, don't handle hashes directly
+
+**What Changed** (WordPress 6.8, April 2025):
+- Default password hashing algorithm changed from phpass to bcrypt
+- New hash prefix: `$wp$2y$` (SHA-384 pre-hashed bcrypt)
+- Existing passwords automatically rehashed on next login
+- Popular bcrypt plugins (roots/wp-password-bcrypt) now redundant
+
+```php
+// ✅ SAFE - These functions continue to work without changes
+wp_hash_password( $password );
+wp_check_password( $password, $hash );
+
+// ⚠️ NEEDS UPDATE - Direct phpass hash handling
+if ( strpos( $hash, '$P$' ) === 0 ) {
+    // Custom phpass logic - needs update for bcrypt
+}
+
+// ✅ NEW - Detect hash type
+if ( strpos( $hash, '$wp$2y$' ) === 0 ) {
+    // bcrypt hash (WordPress 6.8+)
+} elseif ( strpos( $hash, '$P$' ) === 0 ) {
+    // phpass hash (WordPress <6.8)
+}
+```
+
+**Action Required**:
+- Review plugins that directly handle password hashes
+- Remove bcrypt plugins when upgrading to 6.8+
+- No action needed for standard wp_hash_password/wp_check_password usage
+
+### Issue #27: WordPress 6.9 WP_Dependencies Deprecation
+**Error**: "Deprecated: Function WP_Dependencies->add_data() was called with an argument that is deprecated"
+**Source**: [WordPress 6.9 Documentation](https://wordpress.org/documentation/wordpress-version/version-6-9/), [WordPress Support Forum](https://wordpress.org/support/topic/after-automatic-updating-to-6-9-deprecated-function-wp_dependencies/)
+**Why It Happens**: WordPress 6.9 (Dec 2, 2025) deprecated WP_Dependencies object methods
+**Prevention**: Test plugins with WP_DEBUG enabled on WordPress 6.9, replace deprecated methods
+
+**Affected Plugins** (confirmed):
+- WooCommerce (fixed in 10.4.2)
+- Yoast SEO (fixed in 26.6)
+- Elementor (requires 3.24+)
+
+**Breaking Changes**: WordPress 6.9 removed or modified several deprecated functions that older themes and plugins relied on, breaking custom menu walkers, classic widgets, media modals, and customizer features.
+
+**Action Required**:
+- Test plugins with WP_DEBUG enabled on WordPress 6.9
+- Replace deprecated WP_Dependencies methods
+- Check for deprecation notices in debug.log
+- While top 1,000 plugins patched within hours, unmaintained plugins often lag behind
+
+### Issue #28: Translation Loading Changes in WordPress 6.7
+**Error**: Translations don't load or debug notices appear
+**Source**: [WooCommerce Developer Blog](https://developer.woocommerce.com/2024/11/11/developer-advisory-translation-loading-changes-in-wordpress-6-7/), [WordPress 6.7 Field Guide](https://make.wordpress.org/core/2024/10/23/wordpress-6-7-field-guide/)
+**Why It Happens**: WordPress 6.7+ changed when/how translations load
+**Prevention**: Load translations after 'init' priority 10, ensure text domain matches plugin slug
+
+```php
+// ❌ WRONG - Loading too early
+add_action( 'init', 'load_plugin_textdomain' );
+
+// ✅ CORRECT - Load after 'init' priority 10
+add_action( 'init', 'load_plugin_textdomain', 11 );
+
+// Ensure text domain matches plugin slug EXACTLY
+// Plugin header: Text Domain: my-plugin
+__( 'Text', 'my-plugin' );  // Must match exactly
+```
+
+**Action Required**:
+- Review when load_plugin_textdomain() is called
+- Ensure text domain matches plugin slug exactly
+- Test with WP_DEBUG enabled
+
+### Issue #29: wpdb::prepare() Missing Placeholders Error
+**Error**: "The query argument of wpdb::prepare() must have a placeholder"
+**Source**: [WordPress $wpdb Documentation](https://developer.wordpress.org/reference/classes/wpdb/), [SitePoint: Working with Databases](https://www.sitepoint.com/working-with-databases-in-wordpress/)
+**Why It Happens**: Using prepare() without any placeholders
+**Prevention**: Don't use prepare() if no dynamic data
+
+```php
+// ❌ WRONG
+$wpdb->prepare( "SELECT * FROM {$wpdb->posts}" );
+// Error: The query argument of wpdb::prepare() must have a placeholder
+
+// ✅ CORRECT - Don't use prepare() if no dynamic data
+$wpdb->get_results( "SELECT * FROM {$wpdb->posts}" );
+
+// ✅ CORRECT - Use prepare() for dynamic data
+$wpdb->get_results( $wpdb->prepare(
+    "SELECT * FROM {$wpdb->posts} WHERE ID = %d",
+    $post_id
+) );
+```
+
+**Additional wpdb::prepare() Mistakes**:
+
+1. **Percentage Sign Handling**:
+```php
+// ❌ WRONG
+$wpdb->prepare( "SELECT * FROM {$wpdb->posts} WHERE post_title LIKE '%test%'" );
+
+// ✅ CORRECT
+$search = '%' . $wpdb->esc_like( $term ) . '%';
+$wpdb->get_results( $wpdb->prepare(
+    "SELECT * FROM {$wpdb->posts} WHERE post_title LIKE %s",
+    $search
+) );
+```
+
+2. **Mixing Argument Formats**:
+```php
+// ❌ WRONG - Can't mix individual args and array
+$wpdb->prepare( "... WHERE id = %d AND name = %s", $id, array( $name ) );
+
+// ✅ CORRECT - Pick one format
+$wpdb->prepare( "... WHERE id = %d AND name = %s", $id, $name );
+// OR
+$wpdb->prepare( "... WHERE id = %d AND name = %s", array( $id, $name ) );
+```
+
 ---
 
 ## Plugin Architecture Patterns
@@ -542,12 +859,17 @@ new Admin();
 
 ## Common Patterns
 
-**Custom Post Types** (CRITICAL: Flush rewrite rules on activation):
+**Custom Post Types** (CRITICAL: Flush rewrite rules on activation, show_in_rest for block editor):
 ```php
-register_post_type( 'book', array( 'public' => true, 'show_in_rest' => true ) );
+// show_in_rest => true REQUIRED for Gutenberg block editor
+register_post_type( 'book', array(
+    'public' => true,
+    'show_in_rest' => true,  // Without this, block editor won't work!
+    'supports' => array( 'editor', 'title' ),
+) );
 register_activation_hook( __FILE__, function() {
     mypl_register_cpt();
-    flush_rewrite_rules();
+    flush_rewrite_rules();  // NEVER call on every page load
 } );
 ```
 
@@ -761,3 +1083,7 @@ Use this checklist to verify your plugin:
 3. Check official docs: https://developer.wordpress.org/plugins/
 4. Enable WP_DEBUG and check debug.log
 5. Use Query Monitor plugin to debug hooks and queries
+
+---
+
+**Last verified**: 2026-01-21 | **Skill version**: 2.0.0 | **Changes**: Added 9 new issues from WordPress 6.7-6.9 research (bcrypt migration, WP_Dependencies deprecation, translation loading, REST API CVEs 2025-2026, wpdb::prepare() edge cases, nonce limitations, hook gotchas, CPT URL conflicts). Updated from 20 to 29 documented errors prevented. Error count: 20 → 29. Version: 1.x → 2.0.0 (major version due to significant WordPress version-specific content additions).

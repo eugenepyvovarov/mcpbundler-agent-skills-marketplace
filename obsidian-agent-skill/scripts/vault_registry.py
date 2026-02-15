@@ -11,6 +11,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Tuple
 
+try:
+    import obsidian_cli  # type: ignore
+except Exception:
+    obsidian_cli = None
+
 
 def utc_now_iso_z() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
@@ -170,7 +175,7 @@ def extract_vault_entries(data: object) -> Iterable[Tuple[str, str]]:
                     yield (name or Path(path).name, path)
 
 
-def discover_vaults(config_path: Optional[str]) -> List[Dict[str, str]]:
+def discover_vaults_from_config(config_path: Optional[str]) -> List[Dict[str, str]]:
     results: List[Dict[str, str]] = []
     seen_paths = set()
     for path in candidate_config_files(config_path):
@@ -191,6 +196,28 @@ def discover_vaults(config_path: Optional[str]) -> List[Dict[str, str]]:
                 "source": str(path),
             })
     return results
+
+
+def discover_vaults(config_path: Optional[str], cli_binary: str = "") -> List[Dict[str, str]]:
+    if cli_binary:
+        cli_binary = cli_binary.strip()
+    if not config_path and obsidian_cli is not None:
+        cli_vaults = obsidian_cli.discover_vaults(cli_binary)  # type: ignore[attr-defined]
+        if cli_vaults:
+            return [
+                {"name": item["name"], "path": item["path"], "source": "obsidian-cli"}
+                for item in cli_vaults
+                if item.get("name") and item.get("path")
+            ]
+    if config_path and obsidian_cli is not None:
+        cli_vaults = obsidian_cli.discover_vaults(cli_binary)  # type: ignore[attr-defined]
+        if cli_vaults:
+            return [
+                {"name": item["name"], "path": item["path"], "source": "obsidian-cli"}
+                for item in cli_vaults
+                if item.get("name") and item.get("path")
+            ]
+    return discover_vaults_from_config(config_path)
 
 
 def cmd_list(args: argparse.Namespace) -> int:
@@ -397,15 +424,17 @@ def cmd_discover(args: argparse.Namespace) -> int:
     registry = load_registry(reg_path)
     vaults = registry.get("vaults", {})
 
-    found = discover_vaults(args.config)
+    found = discover_vaults(args.config, args.cli_binary)
     if args.json and not args.merge:
         print(json.dumps(found, indent=2))
         return 0
 
     if args.merge:
         for entry in found:
-            name = entry["name"]
-            path = entry["path"]
+            name = entry.get("name")
+            path = entry.get("path")
+            if not name or not path:
+                continue
             if name in vaults and not args.force:
                 existing = vaults[name]
                 existing_path = existing.get("path") if isinstance(existing, dict) else None
@@ -435,6 +464,71 @@ def cmd_discover(args: argparse.Namespace) -> int:
     for entry in found:
         print(f"{entry['name']}\t{entry['path']}")
     return 0
+
+
+def _get_active_name_and_path(
+    skill_root: Path,
+    skill_name: str,
+    data_root: Optional[str],
+    project_root: Optional[str],
+) -> str:
+    reg_path = registry_path(skill_root, skill_name, data_root, project_root)
+    registry = load_registry(reg_path)
+    vaults = registry.get("vaults", {})
+    active = registry.get("active", "")
+    if not isinstance(active, str) or not active:
+        return ""
+    if not isinstance(vaults, dict) or active not in vaults:
+        return ""
+    info = vaults.get(active, {})
+    if not isinstance(info, dict):
+        return ""
+    return active if isinstance(info.get("path"), str) and info.get("path") else ""
+
+
+def cmd_obsidian(args: argparse.Namespace) -> int:
+    if obsidian_cli is None:
+        print("obsidian CLI adapter unavailable (missing obsidian_cli.py).", file=sys.stderr)
+        return 1
+
+    if not args.command:
+        print("No command provided for obsidian execution.", file=sys.stderr)
+        return 1
+    if args.command[0] == "--":
+        command = args.command[1:]
+    else:
+        command = list(args.command)
+
+    if not command:
+        print("No command provided for obsidian execution.", file=sys.stderr)
+        return 1
+
+    skill_root = Path(args.skill_root).expanduser().resolve()
+    skill_name = resolve_skill_name(skill_root, args.skill_name or None)
+    selected_vault = args.vault or _get_active_name_and_path(
+        skill_root,
+        skill_name,
+        args.data_root,
+        args.project_root,
+    )
+
+    result = obsidian_cli.run_obsidian(  # type: ignore[attr-defined]
+        command=command,
+        vault=selected_vault,
+        binary=args.cli_binary,
+        force_delete=args.force_delete,
+        parse_output=not args.raw,
+    )
+
+    if args.raw:
+        if result.get("stdout"):
+            print(result["stdout"], end="")
+        if result.get("stderr"):
+            print(result["stderr"], file=sys.stderr)
+        return int(0 if result.get("ok") else 1)
+
+    print(json.dumps(result, indent=2, default=str))
+    return int(0 if result.get("ok") else 1)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -498,12 +592,21 @@ def build_parser() -> argparse.ArgumentParser:
     )
     set_workdir_parser.set_defaults(func=cmd_set_workdir)
 
-    discover_parser = subparsers.add_parser("discover", help="Discover vaults from Obsidian config")
+    discover_parser = subparsers.add_parser("discover", help="Discover vaults (Obsidian CLI first)")
     discover_parser.add_argument("--config", default="", help="Explicit config file path")
     discover_parser.add_argument("--merge", action="store_true", help="Merge into registry")
     discover_parser.add_argument("--force", action="store_true", help="Overwrite existing names")
     discover_parser.add_argument("--json", action="store_true", help="Output JSON when not merging")
+    discover_parser.add_argument("--cli-binary", default="", help="Obsidian CLI binary/path")
     discover_parser.set_defaults(func=cmd_discover)
+
+    obsidian_parser = subparsers.add_parser("obsidian", help="Run Obsidian CLI commands")
+    obsidian_parser.add_argument("--cli-binary", default="", help="Obsidian CLI binary/path")
+    obsidian_parser.add_argument("--vault", default="", help="Target vault name")
+    obsidian_parser.add_argument("--raw", action="store_true", help="Output raw command output")
+    obsidian_parser.add_argument("--force-delete", action="store_true", help="Allow destructive commands")
+    obsidian_parser.add_argument("command", nargs=argparse.REMAINDER, help="Raw obsidian command tokens")
+    obsidian_parser.set_defaults(func=cmd_obsidian)
 
     return parser
 

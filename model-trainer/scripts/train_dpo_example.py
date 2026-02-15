@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # /// script
+# requires-python = ">=3.10"
 # dependencies = [
 #     "trl>=0.12.0",
 #     "transformers>=4.36.0",

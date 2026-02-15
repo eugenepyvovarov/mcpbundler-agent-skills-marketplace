@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "huggingface_hub",
+#     "pyyaml",
+#     "requests",
+#     "python-dotenv",
+# ]
+# ///
 """
 Paper Manager for Hugging Face Hub
 Manages paper indexing, linking, authorship, and article creation.

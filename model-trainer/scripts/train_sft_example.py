@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # /// script
+# requires-python = ">=3.10"
 # dependencies = [
 #     "trl>=0.12.0",
 #     "peft>=0.7.0",
 #     "transformers>=4.36.0",
 #     "accelerate>=0.24.0",
-#     "trackio",  # For real-time monitoring
+#     "trackio",
 # ]
 # ///
 
@@ -35,7 +36,6 @@ import trackio
 from datasets import load_dataset
 from peft import LoraConfig
 from trl import SFTTrainer, SFTConfig
-
 
 
 # Load dataset
@@ -87,6 +87,7 @@ config = SFTConfig(
     report_to="trackio",  # Integrate with Trackio
     project="meaningful_project_name", # project name for the training name (trackio)
     run_name="baseline-run", #Descriptive name for this training run
+)
 
 # LoRA configuration
 peft_config = LoraConfig(
@@ -115,5 +116,7 @@ print("💾 Pushing to Hub...")
 trainer.push_to_hub()
 
 # Finish Trackio tracking
+trackio.finish()
+
 print("✅ Complete! Model at: https://huggingface.co/username/qwen-capybara-sft")
 print("📊 View metrics at: https://huggingface.co/spaces/username/trackio")

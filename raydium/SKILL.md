@@ -1,8 +1,3 @@
----
-name: raydium
-description: Comprehensive guide for integrating Raydium AMMs on Solana. Use when building swaps, liquidity, and farming features with CLMM/CPMM/AMM via the Raydium SDK.
----
-
 # Raydium Protocol Integration Guide
 
 A comprehensive guide for building applications with Raydium - Solana's leading AMM and liquidity protocol.

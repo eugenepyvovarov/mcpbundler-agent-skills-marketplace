@@ -3,12 +3,65 @@
 Practical examples for common Hugging Face Hub tasks.
 
 ## Table of Contents
+- [Browse Hub](#browse-hub)
 - [Model Workflows](#model-workflows)
 - [Dataset Workflows](#dataset-workflows)
 - [Space Workflows](#space-workflows)
 - [Inference Endpoints](#inference-endpoints)
 - [Cache Management](#cache-management)
 - [Automation Patterns](#automation-patterns)
+
+---
+
+## Browse Hub
+
+### Discover Models
+
+```bash
+# Find popular text generation models
+hf models ls --filter "text-generation" --sort downloads --limit 10
+
+# Search for specific model architecture
+hf models ls --search "MiniMax" --author MiniMaxAI
+
+# Find models with expanded info
+hf models ls --search "MiniMax" --expand downloads,likes,pipeline_tag
+
+# Get detailed info about a model
+hf models info MiniMaxAI/MiniMax-M2.1
+hf models info MiniMaxAI/MiniMax-M2.1 --expand downloads,likes,tags,config
+```
+
+### Discover Datasets
+
+```bash
+# Find popular datasets
+hf datasets ls --sort downloads --limit 10
+
+# Search for datasets by topic
+hf datasets ls --search "finepdfs" --author HuggingFaceFW
+
+# Get detailed info about a dataset
+hf datasets info HuggingFaceFW/finepdfs
+hf datasets info HuggingFaceFW/finepdfs --expand downloads,likes,description
+```
+
+### Discover Spaces
+
+```bash
+# List top trending spaces
+hf spaces ls --limit 10
+
+# Filter by 3D modeling spaces
+hf spaces ls --filter "3d" --limit 10
+
+# Find spaces by author
+hf spaces ls --author enzostvs --limit 20
+
+# Get detailed info about a space
+hf spaces info enzostvs/deepsite
+hf spaces info enzostvs/deepsite --expand sdk,runtime,likes
+```
 
 ---
 
@@ -309,6 +362,12 @@ hf jobs scheduled ps
 | Create space | `hf repo create <name> --repo-type space --space_sdk gradio` |
 | Tag a release | `hf repo tag create <repo_id> v1.0` |
 | Delete files | `hf repo-files delete <repo_id> <files>` |
+| List models | `hf models ls` |
+| Get model info | `hf models info <model_id>` |
+| List datasets | `hf datasets ls` |
+| Get dataset info | `hf datasets info <dataset_id>` |
+| List spaces | `hf spaces ls` |
+| Get space info | `hf spaces info <space_id>` |
 | Check cache | `hf cache ls` |
 | Clear cache | `hf cache prune` |
 | Run on GPU | `hf jobs run --flavor a10g-small <image> <cmd>` |
