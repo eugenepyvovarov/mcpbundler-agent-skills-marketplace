@@ -8,6 +8,26 @@
   },
   "plugins": [
     {
+      "name": "before-you-build",
+      "source": "./before-you-build",
+      "description": "Use before building or changing a product, feature, SaaS, AI app, side project, or startup idea to run a short demand, distribution, and failure-pattern reality check.",
+      "author": {
+        "name": "Before You Build"
+      },
+      "repository": "https://github.com/bin1874/before-you-build-skill",
+      "homepage": "https://github.com/bin1874/before-you-build-skill",
+      "keywords": [
+        "product",
+        "startup",
+        "feature-review",
+        "risk-review",
+        "validation"
+      ],
+      "category": "Marketing",
+      "strict": false,
+      "version": "0.1.1"
+    },
+    {
       "name": "swiftui-liquid-glass",
       "source": "./swiftui-liquid-glass",
       "description": "Implement, review, or improve SwiftUI features using the iOS 26+ Liquid Glass API. Use when asked to adopt Liquid Glass in new SwiftUI UI, refactor an existing feature to Liquid Glass, or review Liquid Glass usage for correctness, performance, and design alignment.",
