@@ -546,6 +546,26 @@
       "version": "337520879dd2a5353d4124f389a6374265423f9e"
     },
     {
+      "name": "xquik-x-data",
+      "source": "./xquik-x-data",
+      "description": "Use Xquik for authorized X/Twitter data workflows through its public REST API, MCP server, webhooks, monitors, and agent skill index. Use when agents need public post search, follower extraction, post composition, giveaway draws, or keyword monitoring with an API key.",
+      "author": {
+        "name": "Xquik"
+      },
+      "repository": "https://github.com/Xquik-dev/x-twitter-scraper",
+      "homepage": "https://docs.xquik.com",
+      "keywords": [
+        "x",
+        "twitter",
+        "rest-api",
+        "mcp",
+        "webhooks"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "ec4c6b9258e1146a5c09e5091b19a6ebc3cb2651"
+    },
+    {
       "name": "n8n-code-javascript",
       "source": "./n8n-code-javascript",
       "description": "Write JavaScript code in n8n Code nodes. Use when writing JavaScript in n8n, using $input/$json/$node syntax, making HTTP requests with $helpers, working with dates using DateTime, troubleshooting Code node errors, or choosing between Code node modes.",
