@@ -134,6 +134,60 @@
       "version": "91223ce3dd270061ce0420e42dbd7c3f851da5aa"
     },
     {
+      "name": "routerbase-api-integration",
+      "source": "./routerbase-api-integration",
+      "description": "Integrate applications with RouterBase, the OpenAI-compatible model gateway at https://routerbase.com/v1. Use when migrating OpenAI SDK calls to RouterBase, configuring RouterBase API keys, implementing chat completions, streaming, tool calling, JSON mode, vision inputs, request validation, error handling, or documenting RouterBase setup for Python, JavaScript, curl, LangChain, LlamaIndex, Vercel AI SDK, Cursor, Continue, or other OpenAI-compatible clients.",
+      "author": {
+        "name": "zenlee123"
+      },
+      "repository": "https://github.com/zenlee123/routerbase-agent-skills",
+      "homepage": "https://github.com/zenlee123/routerbase-agent-skills/tree/main/skills/routerbase-api-integration",
+      "keywords": [
+        "routerbase",
+        "openai-compatible",
+        "api-integration"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "2fc6a4f8644e1e5be1a905bb47c8d5fbc5324ace"
+    },
+    {
+      "name": "routerbase-model-routing",
+      "source": "./routerbase-model-routing",
+      "description": "Choose RouterBase model IDs and routing strategies for chat, image, video, audio, and embeddings workloads. Use when comparing providers, selecting GPT, Claude, Gemini, image, video, or audio models on RouterBase, designing fallback paths, checking pricing or availability, planning cost/latency/quality tradeoffs, querying the RouterBase Models API, or documenting how an app should route model requests through RouterBase.",
+      "author": {
+        "name": "zenlee123"
+      },
+      "repository": "https://github.com/zenlee123/routerbase-agent-skills",
+      "homepage": "https://github.com/zenlee123/routerbase-agent-skills/tree/main/skills/routerbase-model-routing",
+      "keywords": [
+        "routerbase",
+        "model-routing",
+        "fallbacks"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "2fc6a4f8644e1e5be1a905bb47c8d5fbc5324ace"
+    },
+    {
+      "name": "routerbase-media-generation",
+      "source": "./routerbase-media-generation",
+      "description": "Build image, video, and audio generation workflows on RouterBase. Use when calling RouterBase image, video, audio, speech, or media APIs; selecting media model IDs; handling synchronous image responses; polling asynchronous video or audio tasks; using callback URLs; storing generated media before retention expiry; or migrating OpenAI-compatible image generation calls to RouterBase.",
+      "author": {
+        "name": "zenlee123"
+      },
+      "repository": "https://github.com/zenlee123/routerbase-agent-skills",
+      "homepage": "https://github.com/zenlee123/routerbase-agent-skills/tree/main/skills/routerbase-media-generation",
+      "keywords": [
+        "routerbase",
+        "media-generation",
+        "image-video-audio"
+      ],
+      "category": "Development",
+      "strict": false,
+      "version": "2fc6a4f8644e1e5be1a905bb47c8d5fbc5324ace"
+    },
+    {
       "name": "model-trainer",
       "source": "./model-trainer",
       "description": "This skill should be used when users want to train or fine-tune language models using TRL (Transformer Reinforcement Learning) on Hugging Face Jobs infrastructure. Covers SFT, DPO, GRPO and reward modeling training methods, plus GGUF conversion for local deployment. Includes guidance on the TRL Jobs package, UV scripts with PEP 723 format, dataset preparation and validation, hardware selection, cost estimation, Trackio monitoring, Hub authentication, and model persistence. Should be invoked for tasks involving cloud GPU training, GGUF conversion, or when users mention training on Hugging Face Jobs without local GPU setup.",
