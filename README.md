@@ -96,6 +96,7 @@ Owner: eugenepyvovarov
 | `things3-agent-skill` | Manage tasks, projects, areas, headings, and tags in the Things 3 macOS app via a local CLI (list Inbox/Today/Upcoming/Anytime/Someday/Logbook, search, create/update/complete/cancel items, open items in Things). Use when Codex needs to manage Things 3 on macOS.<br><br>Origin: https://github.com/eugenepyvovarov/things3-agent-skill |
 | `writing-clearly-and-concisely` | Use when writing prose humans will read—documentation, commit messages, error messages, explanations, reports, or UI text. Applies Strunk's timeless rules for clearer, stronger, more professional writing.<br><br>Origin: https://github.com/softaworks/agent-toolkit |
 | `x-bookmarks-agent-skill` | Read X/Twitter bookmarks using the bird CLI, verify the active account via `bird whoami`, and return bookmarks as JSON. Use when the user asks to list, search, summarize, or export X bookmarks, or when you must validate the active X account before fetching bookmarks.<br><br>Origin: https://github.com/eugenepyvovarov/x-bookmarks-agent-skill |
+| `x-twitter-scraper` | Use Xquik for X/Twitter REST, OAuth 2.1 MCP, SDKs, search, exports, monitoring, and approved publishing. Not affiliated with X Corp.<br><br>Origin: https://github.com/Xquik-dev/x-twitter-scraper |
 
 ### Solana development
 

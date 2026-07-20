@@ -4,7 +4,7 @@
     "name": "eugenepyvovarov"
   },
   "metadata": {
-    "description": "Marketplace for Agent skills curated for the MCPBundler app(https://mcpbundler.com)"
+    "description": "Marketplace for agent skills curated for MCPBundler (https://mcpbundler.com)."
   },
   "plugins": [
     {
@@ -544,6 +544,26 @@
       "category": "Productivity",
       "strict": false,
       "version": "337520879dd2a5353d4124f389a6374265423f9e"
+    },
+    {
+      "name": "x-twitter-scraper",
+      "source": "./x-twitter-scraper",
+      "description": "Use Xquik for X/Twitter REST, OAuth 2.1 MCP, SDKs, search, exports, monitoring, and approved publishing. Not affiliated with X Corp.",
+      "author": {
+        "name": "Xquik-dev"
+      },
+      "repository": "https://github.com/Xquik-dev/x-twitter-scraper",
+      "homepage": "https://github.com/Xquik-dev/x-twitter-scraper/tree/master/skills/x-twitter-scraper",
+      "keywords": [
+        "x",
+        "twitter",
+        "tweet-search",
+        "mcp",
+        "webhooks"
+      ],
+      "category": "Productivity",
+      "strict": false,
+      "version": "1641e3f0c213521b0d6e0b53cfe83220e29f8d89"
     },
     {
       "name": "n8n-code-javascript",
